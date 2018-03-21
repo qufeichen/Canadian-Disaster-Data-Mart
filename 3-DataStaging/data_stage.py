@@ -8,10 +8,10 @@ import datetime
 import re
 
 # dependencies: install these before running!
-# pip3 install pandas
-# pip3 install xlrd
-# pip3 install psycopg2
-# pip3 install sqlalchemy
+# pip install pandas
+# pip install xlrd
+# pip install psycopg2
+# pip install sqlalchemy
 
 def main():
 
@@ -46,7 +46,7 @@ def main():
     location_df = location_df.drop_duplicates(keep='first').dropna(how="all") # filter out null values
     location_df['id'] = range(0, len(location_df)) # generate surrogate keys
 
-    print(location_df)
+    # print(location_df)
     # documents = documents.append({"ID": doc_id, "Passed Away": passed_away, "Discharge Summary": discharge_summary}, ignore_index=True)
 
 def get_location(location):
@@ -61,6 +61,9 @@ def get_location(location):
     # split into individual terms
     terms = place.split(" ")
 
+    # stop words to remove
+    stop_words = ["in", "and", ""]
+
     # placeholders for resulting variables
     city = ""
     province = ""
@@ -73,7 +76,21 @@ def get_location(location):
         # if no province is listed, will return "N/A"
         if "N/A" not in result:
             province = result
-            city = place.replace(word, '').replace(r'\s+', ' ')
+
+            # remove province from city description
+            city = place.replace(word, '')
+
+            # check if "and" occurs (indicates that location includes more than one place)
+            # if yes, then take the first location (string before the 'and')
+            if " and " in city:
+                print("before" + city)
+                city = city.split(" and ")[0]
+                print("after" + city)
+            # remove stopwords
+            for stop_word in stop_words:
+                city = city.replace(stop_word, '')
+            # get rid of excess spaces
+            city = city.replace(r'\s+', ' ')
             break
 
     # determine country and if in canada from the province
@@ -94,7 +111,7 @@ def get_province(argument):
         "ON": "ON",
         "Ontario": "ON",
         "QC": "QC",
-        "Quebec": "QC",
+        "Quebec City": "QC",
         "BC": "BC",
         "British Columbia": "BC",
         "AB": "AB",
@@ -120,6 +137,7 @@ def get_province(argument):
         "NU": "NU",
         "Nunavut": "NU",
     }
+
     return provinces.get(argument, "N/A")
 
 
