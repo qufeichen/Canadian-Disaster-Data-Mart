@@ -24,67 +24,60 @@ DATABASE_PASSWORD = ""
 def main():
 
     # pandas postgres engine
-    # engine = create_engine('postgresql://qufeichen:@localhost:5432/disaster')
+    engine = create_engine('postgresql://qufeichen:@localhost:5432/CanadianDisasterDataMart')
 
     # read in values from csv
     df = pd.read_excel(os.path.abspath("CanadianDisasterDatabase.xlsx"), header=0)
     df = df.dropna(how="all") # remove null rows
 
-    # TEST
-    # print(df)
-    print(list(df))
-
-    # - data frames for each dimension:
-    #   date_df
-    #   location_df
-    #   disaster_df
-    #   summary_df
-    #   costs_df
-    #   fact_df
-    # - other enriched data (optional?)
     #   weather_df =
     #   population_stats_df =
 
-    # location
+    # LOCATION
     location_df = df[['PLACE','PLACE','PLACE','PLACE']].copy() # generate df for location dimension
     location_df.columns = ['city', 'province', 'country', 'canada'] # name columns
     # transform 'place' into location attributes
     location_df = location_df.apply(get_location, axis=1) #
     # remove duplicates
-    location_df = location_df.drop_duplicates(keep='first').dropna(how="all") # filter out null values
+    location_df = location_df.drop_duplicates(keep='first')
     # create surrogate keys
-    location_df['id'] = range(0, len(location_df)) # generate surrogate keys
+    location_df['location_key'] = range(0, len(location_df)) # generate surrogate keys
 
     # print(location_df)
+    # location_df.to_sql("location", engine, index=False, if_exists='append')
 
-    # date
+    # DATE
     # all date rows (start date and end date)
-    date_columns = ['day', 'month', 'year', 'weekend', 'season-canada', 'season-international' ]
-    date_df = df[['EVENT START DATE','EVENT START DATE','EVENT START DATE','EVENT START DATE', 'EVENT START DATE', 'EVENT START DATE']].copy() # generate df for location dimension
+    date_columns = ['day', 'week', 'month','year', 'weekend', 'season_canada', 'season_international' ]
+    date_df = df[['EVENT START DATE','EVENT START DATE','EVENT START DATE', 'EVENT START DATE','EVENT START DATE', 'EVENT START DATE', 'EVENT START DATE']].copy() # generate df for location dimension
     date_df.columns = date_columns
-    end_date_df = df[['EVENT END DATE','EVENT END DATE','EVENT END DATE','EVENT END DATE', 'EVENT END DATE', 'EVENT END DATE']].copy()
+    end_date_df = df[['EVENT END DATE','EVENT START DATE', 'EVENT END DATE','EVENT END DATE','EVENT END DATE', 'EVENT END DATE', 'EVENT END DATE']].copy()
     end_date_df.columns = date_columns
     date_df = date_df.append(end_date_df, ignore_index=True)
     # transform date into date attributes
     date_df = date_df.apply(get_date, axis=1)
     # remove duplicates
-    date_df = date_df.drop_duplicates(keep='first').dropna(how="all") # filter out null values
+    date_df = date_df.drop_duplicates(keep='first')
     # create surrogate keys
-    date_df['id'] = range(0, len(date_df)) # generate surrogate keys
+    date_df['date_key'] = range(0, len(date_df)) # generate surrogate keys
 
     # print(date_df)
+    # date_df.to_sql("date", engine, index=False, if_exists='append')
 
-    # disaster
+
+    # DISASTER
     # can take columns as is from raw data
-    disaster_columns = ['disaster_type', 'disaster_subgroup', 'disaster_group', 'disaster_category', 'magnitude-canada', 'utility-people_affected' ]
+    disaster_columns = ['disaster_type', 'disaster_subgroup', 'disaster_group', 'disaster_category', 'magnitude', 'utility_people_affected' ]
     disaster_df = df[['EVENT TYPE','EVENT SUBGROUP','EVENT GROUP','EVENT CATEGORY', 'MAGNITUDE', 'UTILITY - PEOPLE AFFECTED']].copy() # generate df for location dimension
     disaster_df.columns = disaster_columns
     # remove duplicates
-    disaster_df = disaster_df.drop_duplicates(keep='first').dropna(how="all") # filter out null values
+    disaster_df = disaster_df.drop_duplicates(keep='first')
     # create surrogate keys
-    disaster_df['id'] = range(0, len(disaster_df)) # generate surrogate keys
+    disaster_df['disaster_key'] = range(0, len(disaster_df)) # generate surrogate keys
 
     # print(disaster_df)
+    # disaster_df.to_sql("disaster", engine, index=False, if_exists='append')
+
 
     # summary
     summary_columns = ['summary', 'keyword1', 'keyword2', 'keyword3']
@@ -92,10 +85,14 @@ def main():
     summary_df.columns = summary_columns
     # get keywords from summary
     summary_df = summary_df.apply(get_keywords, axis=1)
+    # change summary column data type from series to string
+    summary_df.summary.apply('str')
     # create surrogate keys
-    summary_df['id'] = range(0, len(summary_df)) # generate surrogate keys
+    summary_df['summary_key'] = range(0, len(summary_df)) # generate surrogate keys
 
-    # print(summary_df)
+    # print(summary_df.to_string())
+    # summary_df.to_sql("summary", engine, index=False, if_exists='append')
+
 
     # costs
     # note: column provincial_payments2 is a temp column
@@ -104,19 +101,24 @@ def main():
     costs_df.columns = costs_columns
     # add together the two provincial payments (while taking null values into account)
     costs_df = costs_df.apply(get_provincial_payments, axis=1)
-    # remove duplicates
-    costs_df = costs_df.drop_duplicates(keep='first').dropna(how="all") # filter out null values
+    # remove temp column provincial_payments2 and duplicates
+    costs_df = costs_df.drop(['provincial_payments2'], axis=1)
+    costs_df = costs_df.drop_duplicates(keep='first')
     # create surrogate keys
-    costs_df['id'] = range(0, len(costs_df)) # generate surrogate keys
+    costs_df['costs_key'] = range(0, len(costs_df)) # generate surrogate keys
 
-    print(costs_df)
-    print()
-    # print(costs_df.loc[126])
-    print(costs_df.loc[127])
-    print(costs_df.loc[128])
-    print(costs_df.loc[129])
-    print(costs_df.loc[130])
+    # print(costs_df.toString())
+    # costs_df.to_sql("costs", engine, index=False, if_exists='append')
 
+    # ADDITIONAL DIMENSTIONS:
+    # WEATHER
+    weather_df = pd.DataFrame([[0, ""]], columns=['weather_key', 'description'])
+    # weather_df.to_sql("weather_info", engine, index=False, if_exists='append')
+    # POPULATION STATS
+    population_stats_df = pd.DataFrame([[0, ""]], columns=['pop_stats_key', 'description'])
+    # population_stats_df.to_sql("population_statistics", engine, index=False, if_exists='append')
+
+    # facts
     fact_columns = ['start_date_key', 'end_date_key', 'location_key', 'disaster_key', 'summary_key', 'cost_key', 'pop_stats_key', 'weather_key', 'fatalities', 'injured', 'evacuated']
     fact_df = pd.DataFrame(index = df.index.values, columns=fact_columns)
     # print(fact_df)
@@ -209,12 +211,18 @@ def get_date(date):
     # get date_time object
     date_time = date[0]
 
-    # return None if not a datetime object
-    if not isinstance(date_time, datetime.date):
-        return [None, None, None, None, None, None]
+    # filter for objects taht are not datetime
+    if not isinstance(date_time, datetime.datetime):
+        return [None, None, None, None, None, None, None]
+
+    # filer for null objects
+    if date_time != date_time:
+        return [None, None, None, None, None, None, None]
+
 
     # check if it is a weekend
     weekend = False
+
     if "Sunday" in date_time.weekday_name or "Saturday" in date_time.weekday_name:
         weekend = True
 
@@ -234,7 +242,7 @@ def get_date(date):
         season_canada = "Winter"
         season_international = "Winter"
 
-    return [date_time.day, date_time.month, date_time.year, weekend, season_canada, season_international]
+    return [date_time.dayofweek+1, date_time.week, date_time.month, date_time.year, weekend, season_canada, season_international]
 
 def get_keywords(summary):
 
@@ -258,9 +266,9 @@ def get_keywords(summary):
 
     # if not enough words in summary for keywords, do not add
     if len(keywords) < 3:
-        return [summary, "", "", ""]
+        return [summary[0], "", "", ""]
     else:
-        return [summary, keywords[0], keywords[1], keywords[2]]
+        return [summary[0], keywords[0], keywords[1], keywords[2]]
 
 def get_provincial_payments(costs):
     # return sum of payment1 and payment2
