@@ -8,11 +8,12 @@ import datetime
 import re
 import numpy as np
 
-# dependencies: install these before running!
+# dependencies: make sure these are installed before running!
 # pip install pandas
 # pip install xlrd
 # pip install psycopg2
 # pip install sqlalchemy
+# pip install numpy
 
 # change these config params to your db credentials
 DATABASE_NAME = "CanadianDisasterDataMart"
@@ -31,7 +32,8 @@ def main():
     df = pd.read_excel(os.path.abspath("CanadianDisasterDatabase.xlsx"), header=0)
     df = df.dropna(how="all") # remove null rows
 
-    print(list(df))
+    # TEST
+    # print(list(df))
 
     # LOCATION
     location_df = df[['PLACE','PLACE','PLACE','PLACE']].copy() # generate df for location dimension
@@ -113,7 +115,6 @@ def main():
     weather_df.to_sql("weather_info", engine, index=False, if_exists='append')
     population_stats_df.to_sql("population_statistics", engine, index=False, if_exists='append')
 
-
     # FACT TABLE
     df = df.apply(get_facts, axis=1)
     # rename columns
@@ -126,112 +127,7 @@ def main():
     # insert facts into db
     df.to_sql("fact_table", engine, index=False, if_exists='append')
 
-
-def get_facts(line):
-
-    # get params for start_date
-    start_date = line['EVENT START DATE']
-    start_date_array = []
-    # filter for objects taht are not datetime
-    if not isinstance(start_date, datetime.datetime):
-        start_date_array = [None, None, None, None]
-    # filer for null objects
-    elif start_date != start_date:
-        start_date_array = [None, None, None, None]
-    else:
-        start_date_array = [start_date.isoweekday(), start_date.strftime('%W'), start_date.month, start_date.year]
-
-    # get params for end_date
-    end_date = line['EVENT END DATE']
-    end_date_array = []
-    # filter for objects taht are not datetime
-    if not isinstance(end_date, datetime.datetime):
-        end_date_array = [None, None, None, None]
-    # filer for null objects
-    elif end_date != end_date:
-        end_date_array = [None, None, None, None]
-    else:
-        end_date_array = [end_date.isoweekday(), end_date.strftime('%W'), end_date.month, end_date.year]
-        print("I AM HERE")
-
-    # get location params
-    location_array = get_location(list([line['PLACE'], line['PLACE']]))
-
-    # get disaster params
-    disaster_array = [line['EVENT TYPE'], line['EVENT SUBGROUP'], line['EVENT GROUP'], line['EVENT CATEGORY']]
-
-    # get summary params
-    summary_array = line['COMMENTS']
-
-    # get costs params
-    costs_array = [line['ESTIMATED TOTAL COST'], line['NORMALIZED TOTAL COST'], line['FEDERAL DFAA PAYMENTS'], line['INSURANCE PAYMENTS']]
-
-    # retrieve keys
-    start_date_key = get_date_id(start_date_array)
-    end_date_key = get_date_id(end_date_array)
-    location_key = get_location_id(location_array)
-    disaster_key = get_disaster_id(disaster_array)
-    summary_key = get_summary_id(summary_array)
-    costs_key = get_cost_id(costs_array)
-    # weather and pop_stats_key are fixed (no data yet)
-    weather_key = 0
-    population_stats_key = 0
-
-    # measures -> grabbed directly from the line
-    fatalities = line['FATALITIES']
-    injured = line['INJURED / INFECTED']
-    evacuated = line['EVACUATED']
-
-    # return line
-    return [start_date_key, end_date_key, location_key, disaster_key, summary_key, costs_key, weather_key, population_stats_key, fatalities, injured, evacuated, None,  None,  None,  None,  None,  None,  None,  None,  None,  None,  None]
-
-
-def get_date_id(date):
-    # date = [day, week, month, year]
-    command = ("""SELECT date_key FROM date WHERE day={} AND week={} AND month={} AND year={}""".format(date[0], date[1], date[2], date[3]),)
-    val = execute_db_command(command, True)
-    if val is None:
-        return None
-    else:
-        return val[0]
-
-def get_location_id(place):
-    # place = [city, province, country, canada]
-    command = ("""SELECT * FROM location WHERE city='{}' AND province='{}' AND country='{}'""".format(place[0], place[1], place[2]),)
-    val = execute_db_command(command, True)
-    print(val)
-    if val is None:
-        return None
-    else:
-        return val[0]
-
-def get_disaster_id(disaster):
-    # disaster_array = [disaster_type, disaster_subgroup, disaster_group, disaster_category]
-    command = ("""SELECT disaster_key FROM disaster WHERE disaster_type='{}' AND disaster_subgroup='{}' AND disaster_group='{}' AND disaster_category='{}'""".format(disaster[0], disaster[1], disaster[2], disaster[3]),)
-    val = execute_db_command(command, True)
-    if val is None:
-        return None
-    else:
-        return val[0]
-
-def get_summary_id(summary):
-    # summary_array = line['COMMENTS']
-    command = ("""SELECT summary_key FROM summary WHERE summary='{}'""".format(summary),)
-    val = execute_db_command(command, True)
-    if val is None:
-        return None
-    else:
-        return val[0]
-
-def get_cost_id(cost):
-    # cost_array = [estimated_total_cost, normalized_total_cost, federal_payments, insurance_payments]
-    command = ("""SELECT costs_key FROM costs WHERE estimated_total_cost={} AND normalized_total_cost={} AND federal_payments={} AND insurance_payments={}""".format(cost[0], cost[1], cost[2], cost[3]),)
-    val = execute_db_command(command, True)
-    if val is None:
-        return None
-    else:
-        return val[0]
-
+# method to format data in the location dimension
 def get_location(location):
 
     # entire "PLACE" string is in location[0]
@@ -308,6 +204,43 @@ def get_location(location):
 
     return [city, province, country, canada]
 
+# helper method for location: dictionary of province name mappings
+def get_province(argument):
+
+    provinces = {
+        "ON": "ON",
+        "Ontario": "ON",
+        "QC": "QC",
+        "Quebec": "QC",
+        "BC": "BC",
+        "British Columbia": "BC",
+        "AB": "AB",
+        "Alberta": "AB",
+        "ON": "ON",
+        "NS": "NS",
+        "Nova Scotia": "NS",
+        "MB": "MB",
+        "Manitoba": "MB",
+        "SK": "SK",
+        "Saskatchewan": "SK",
+        "NB": "NB",
+        "New Brunswick": "NB",
+        "NL": "NL",
+        "Newfoundland and Labrador": "NL",
+        "PE": "PE",
+        "PEI": "PE",
+        "Prince Edward Island": "PE",
+        "NT": "NT",
+        "NT": "Northwest Territories",
+        "YT": "YT",
+        "Yukon": "YT",
+        "NU": "NU",
+        "Nunavut": "NU",
+    }
+
+    return provinces.get(argument, "N/A")
+
+# method to format data in the date dimension
 def get_date(date):
 
     # get date_time object
@@ -345,6 +278,7 @@ def get_date(date):
 
     return [date_time.dayofweek+1, date_time.week, date_time.month, date_time.year, weekend, season_canada, season_international]
 
+# method to extract keywords for the summary dimension
 def get_keywords(summary):
 
     # words = summary.to_string().split()
@@ -371,6 +305,7 @@ def get_keywords(summary):
     else:
         return [summary[0], keywords[0], keywords[1], keywords[2]]
 
+# method to sum the provincial payments for the costs dimension
 def get_provincial_payments(costs):
     # return sum of payment1 and payment2
     # values can be null, so must check
@@ -402,41 +337,112 @@ def get_provincial_payments(costs):
     payment2 = np.nan
     return [estimated_total_cost, normalized_total_cost, federal_payments, provincial_payments1, provincial_payments2, insurance_payments]
 
+# method to format data in fact table
+def get_facts(line):
 
-# dictionary of province name mappings
-def get_province(argument):
-    provinces = {
-        "ON": "ON",
-        "Ontario": "ON",
-        "QC": "QC",
-        "Quebec": "QC",
-        "BC": "BC",
-        "British Columbia": "BC",
-        "AB": "AB",
-        "Alberta": "AB",
-        "ON": "ON",
-        "NS": "NS",
-        "Nova Scotia": "NS",
-        "MB": "MB",
-        "Manitoba": "MB",
-        "SK": "SK",
-        "Saskatchewan": "SK",
-        "NB": "NB",
-        "New Brunswick": "NB",
-        "NL": "NL",
-        "Newfoundland and Labrador": "NL",
-        "PE": "PE",
-        "PEI": "PE",
-        "Prince Edward Island": "PE",
-        "NT": "NT",
-        "NT": "Northwest Territories",
-        "YT": "YT",
-        "Yukon": "YT",
-        "NU": "NU",
-        "Nunavut": "NU",
-    }
+    # get params for start_date
+    start_date = line['EVENT START DATE']
+    start_date_array = []
+    # filter for objects taht are not datetime
+    if not isinstance(start_date, datetime.datetime):
+        start_date_array = [None, None, None, None]
+    # filer for null objects
+    elif start_date != start_date:
+        start_date_array = [None, None, None, None]
+    else:
+        start_date_array = [start_date.isoweekday(), start_date.strftime('%W'), start_date.month, start_date.year]
 
-    return provinces.get(argument, "N/A")
+    # get params for end_date
+    end_date = line['EVENT END DATE']
+    end_date_array = []
+    # filter for objects taht are not datetime
+    if not isinstance(end_date, datetime.datetime):
+        end_date_array = [None, None, None, None]
+    # filer for null objects
+    elif end_date != end_date:
+        end_date_array = [None, None, None, None]
+    else:
+        end_date_array = [end_date.isoweekday(), end_date.strftime('%W'), end_date.month, end_date.year]
+        print("I AM HERE")
+
+    # get location params
+    location_array = get_location(list([line['PLACE'], line['PLACE']]))
+
+    # get disaster params
+    disaster_array = [line['EVENT TYPE'], line['EVENT SUBGROUP'], line['EVENT GROUP'], line['EVENT CATEGORY']]
+
+    # get summary params
+    summary_array = line['COMMENTS']
+
+    # get costs params
+    costs_array = [line['ESTIMATED TOTAL COST'], line['NORMALIZED TOTAL COST'], line['FEDERAL DFAA PAYMENTS'], line['INSURANCE PAYMENTS']]
+
+    # retrieve keys
+    start_date_key = get_date_id(start_date_array)
+    end_date_key = get_date_id(end_date_array)
+    location_key = get_location_id(location_array)
+    disaster_key = get_disaster_id(disaster_array)
+    summary_key = get_summary_id(summary_array)
+    costs_key = get_cost_id(costs_array)
+    # weather and pop_stats_key are fixed (no data yet)
+    weather_key = 0
+    population_stats_key = 0
+
+    # measures -> grabbed directly from the line
+    fatalities = line['FATALITIES']
+    injured = line['INJURED / INFECTED']
+    evacuated = line['EVACUATED']
+
+    # return line
+    return [start_date_key, end_date_key, location_key, disaster_key, summary_key, costs_key, weather_key, population_stats_key, fatalities, injured, evacuated, None,  None,  None,  None,  None,  None,  None,  None,  None,  None,  None]
+
+# FACT TABLE HELPER METHODS (all method names ending with "_id")
+# used to retrieve foreign keys from dimensional tables
+def get_date_id(date):
+    # date = [day, week, month, year]
+    command = ("""SELECT date_key FROM date WHERE day={} AND week={} AND month={} AND year={}""".format(date[0], date[1], date[2], date[3]),)
+    val = execute_db_command(command, True)
+    if val is None:
+        return None
+    else:
+        return val[0]
+
+def get_location_id(place):
+    # place = [city, province, country, canada]
+    command = ("""SELECT * FROM location WHERE city='{}' AND province='{}' AND country='{}'""".format(place[0], place[1], place[2]),)
+    val = execute_db_command(command, True)
+    print(val)
+    if val is None:
+        return None
+    else:
+        return val[0]
+
+def get_disaster_id(disaster):
+    # disaster = [disaster_type, disaster_subgroup, disaster_group, disaster_category]
+    command = ("""SELECT disaster_key FROM disaster WHERE disaster_type='{}' AND disaster_subgroup='{}' AND disaster_group='{}' AND disaster_category='{}'""".format(disaster[0], disaster[1], disaster[2], disaster[3]),)
+    val = execute_db_command(command, True)
+    if val is None:
+        return None
+    else:
+        return val[0]
+
+def get_summary_id(summary):
+    # summary = 'COMMENTS'
+    command = ("""SELECT summary_key FROM summary WHERE summary='{}'""".format(summary),)
+    val = execute_db_command(command, True)
+    if val is None:
+        return None
+    else:
+        return val[0]
+
+def get_cost_id(cost):
+    # costs = [estimated_total_cost, normalized_total_cost, federal_payments, insurance_payments]
+    command = ("""SELECT costs_key FROM costs WHERE estimated_total_cost={} AND normalized_total_cost={} AND federal_payments={} AND insurance_payments={}""".format(cost[0], cost[1], cost[2], cost[3]),)
+    val = execute_db_command(command, True)
+    if val is None:
+        return None
+    else:
+        return val[0]
 
 # connect to db and execute commands
 def execute_db_command(commands, fetch_value):
