@@ -31,8 +31,6 @@ def main():
     # read in values from csv
     df = pd.read_excel(os.path.abspath("CanadianDisasterDatabase.xlsx"), header=0)
     df = df.dropna(how="all") # remove null rows
-
-    # TEST
     # print(list(df))
 
     # LOCATION
@@ -104,7 +102,6 @@ def main():
     weather_df = pd.DataFrame([[0, ""]], columns=['weather_key', 'description'])
     # POPULATION STATS
     population_stats_df = pd.DataFrame([[0, ""]], columns=['pop_stats_key', 'description'])
-
 
     # # INSERT DIMENSIONS INTO DB
     location_df.to_sql("location", engine, index=False, if_exists='append')
@@ -363,7 +360,6 @@ def get_facts(line):
         end_date_array = [None, None, None, None]
     else:
         end_date_array = [end_date.isoweekday(), end_date.strftime('%W'), end_date.month, end_date.year]
-        print("I AM HERE")
 
     # get location params
     location_array = get_location(list([line['PLACE'], line['PLACE']]))
@@ -409,9 +405,8 @@ def get_date_id(date):
 
 def get_location_id(place):
     # place = [city, province, country, canada]
-    command = ("""SELECT * FROM location WHERE city='{}' AND province='{}' AND country='{}'""".format(place[0], place[1], place[2]),)
+    command = ("""SELECT location_key FROM location WHERE city='{}' AND province='{}' AND country='{}'""".format(place[0], place[1], place[2]),)
     val = execute_db_command(command, True)
-    print(val)
     if val is None:
         return None
     else:
