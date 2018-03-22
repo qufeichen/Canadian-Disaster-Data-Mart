@@ -9,13 +9,13 @@ CREATE TABLE date (
   month int NOT NULL CHECK (month >= 1 AND month <= 12),
   year int NOT NULL,
   weekend boolean NOT NULL,
-  seasonCanada text,
-  seasonInternational text
+  season_canada text,
+  season_international text
 );
 
 -- Location Dimension
 CREATE TABLE location (
-  locationKey int PRIMARY KEY,
+  location_key int PRIMARY KEY,
   city text NOT NULL,
   province text NOT NULL,
   country text NOT NULL,
@@ -24,18 +24,18 @@ CREATE TABLE location (
 
 -- Disaster Dimension
 CREATE TABLE disaster (
-  disasterKey int PRIMARY KEY,
-  disasterType text NOT NULL,
-  disasterSubgroup text NOT NULL,
-  disasterGroup text NOT NULL,
-  disasterCategory text NOT NULL,
+  disaster_key int PRIMARY KEY,
+  disaster_type text NOT NULL,
+  disaster_subgroup text NOT NULL,
+  disaster_group text NOT NULL,
+  disaster_category text NOT NULL,
   magnitude decimal NOT NULL,
-  utilityPeopleAffected int NOT NULL
+  utility_people_affected int NOT NULL
 );
 
 -- Summary Dimension
 CREATE TABLE summary (
-  summaryKey int PRIMARY KEY,
+  summary_key int PRIMARY KEY,
   summary text NOT NULL,
   keyword1 text NOT NULL,
   keyword2 text NOT NULL,
@@ -44,37 +44,37 @@ CREATE TABLE summary (
 
 -- Costs Dimension
 CREATE TABLE costs (
-  costsKey int PRIMARY KEY,
-  estimatedTotalCost decimal,
-  normalizedTotalCost decimal,
-  federalPayments decimal,
-  provincialPayments decimal,
-  insurancePayments decimal
+  costs_key int PRIMARY KEY,
+  estimated_total_cost decimal,
+  normalized_total_cost decimal,
+  federal_payments decimal,
+  provincial_payments decimal,
+  insurance_payments decimal
 );
 
 -- populationStatistics Dimension
-CREATE TABLE populationStatistics (
-  popStatsKey int PRIMARY KEY,
+CREATE TABLE population_statistics (
+  pop_stats_key int PRIMARY KEY,
   description text NOT NULL
 );
 
 -- WeatherInfo Dimension
-CREATE TABLE weatherInfo (
-  weatherKey int PRIMARY KEY,
+CREATE TABLE weather_info (
+  weather_key int PRIMARY KEY,
   description text NOT NULL
 );
 
 -- Fact table
-CREATE TABLE factTable (
-  startDateKey int NOT NULL REFERENCES date (dateKey),
-  endDateKey int NOT NULL REFERENCES date (dateKey),
-  locationKey int NOT NULL REFERENCES location (locationKey),
-  disasterKey int NOT NULL REFERENCES disaster (disasterkey),
-  summaryKey int NOT NULL REFERENCES summary (summaryKey),
-  costKey int NOT NULL REFERENCES costs (costsKey),
-  popStatsKey int NOT NULL REFERENCES populationStatistics (popStatsKey),
-  weatherKey int NOT NULL REFERENCES weatherInfo (weatherKey),
+CREATE TABLE fact_table (
+  start_date_key int NOT NULL REFERENCES date (dateKey),
+  end_date_key int NOT NULL REFERENCES date (dateKey),
+  location_key int NOT NULL REFERENCES location (locationKey),
+  disaster_key int NOT NULL REFERENCES disaster (disasterkey),
+  summary_key int NOT NULL REFERENCES summary (summaryKey),
+  cost_key int NOT NULL REFERENCES costs (costsKey),
+  pop_stats_key int NOT NULL REFERENCES populationStatistics (popStatsKey),
+  weather_key int NOT NULL REFERENCES weatherInfo (weatherKey),
   fatalities int NOT NULL,
   injured int NOT NULL,
-  Evacuated int NOT NULL
+  evacuated int NOT NULL
 );
