@@ -1,4 +1,4 @@
-# script to extract and transform the data and load all rows into the data mart
+# data staging script to extract and transform the data and load all rows into the data mart
 
 import pandas as pd
 from sqlalchemy import create_engine
@@ -7,6 +7,7 @@ import os
 import datetime
 import re
 import numpy as np
+
 # dependencies: install these before running!
 # pip install pandas
 # pip install xlrd
@@ -24,14 +25,13 @@ DATABASE_PASSWORD = ""
 def main():
 
     # pandas postgres engine
-    engine = create_engine('postgresql://qufeichen:@localhost:5432/CanadianDisasterDataMart')
+    engine = create_engine('postgresql://' + DATABASE_USERNAME + ':' + DATABASE_PASSWORD + '@localhost:5432/' + DATABASE_NAME)
 
     # read in values from csv
     df = pd.read_excel(os.path.abspath("CanadianDisasterDatabase.xlsx"), header=0)
     df = df.dropna(how="all") # remove null rows
 
-    #   weather_df =
-    #   population_stats_df =
+    print(list(df))
 
     # LOCATION
     location_df = df[['PLACE','PLACE','PLACE','PLACE']].copy() # generate df for location dimension
@@ -42,9 +42,7 @@ def main():
     location_df = location_df.drop_duplicates(keep='first')
     # create surrogate keys
     location_df['location_key'] = range(0, len(location_df)) # generate surrogate keys
-
     # print(location_df)
-    # location_df.to_sql("location", engine, index=False, if_exists='append')
 
     # DATE
     # all date rows (start date and end date)
@@ -60,10 +58,7 @@ def main():
     date_df = date_df.drop_duplicates(keep='first')
     # create surrogate keys
     date_df['date_key'] = range(0, len(date_df)) # generate surrogate keys
-
     # print(date_df)
-    # date_df.to_sql("date", engine, index=False, if_exists='append')
-
 
     # DISASTER
     # can take columns as is from raw data
@@ -74,12 +69,9 @@ def main():
     disaster_df = disaster_df.drop_duplicates(keep='first')
     # create surrogate keys
     disaster_df['disaster_key'] = range(0, len(disaster_df)) # generate surrogate keys
-
     # print(disaster_df)
-    # disaster_df.to_sql("disaster", engine, index=False, if_exists='append')
 
-
-    # summary
+    # SUMMARY
     summary_columns = ['summary', 'keyword1', 'keyword2', 'keyword3']
     summary_df = df[['COMMENTS', 'COMMENTS', 'COMMENTS', 'COMMENTS']]
     summary_df.columns = summary_columns
@@ -89,12 +81,9 @@ def main():
     summary_df.summary.apply('str')
     # create surrogate keys
     summary_df['summary_key'] = range(0, len(summary_df)) # generate surrogate keys
-
     # print(summary_df.to_string())
-    # summary_df.to_sql("summary", engine, index=False, if_exists='append')
 
-
-    # costs
+    # COSTS
     # note: column provincial_payments2 is a temp column
     costs_columns = ['estimated_total_cost', 'normalized_total_cost', 'federal_payments', 'provincial_payments', 'provincial_payments2', 'insurance_payments']
     costs_df = df[['ESTIMATED TOTAL COST', 'NORMALIZED TOTAL COST', 'FEDERAL DFAA PAYMENTS', 'PROVINCIAL DFAA PAYMENTS', 'PROVINCIAL DEPARTMENT PAYMENTS', 'INSURANCE PAYMENTS']]
@@ -106,29 +95,142 @@ def main():
     costs_df = costs_df.drop_duplicates(keep='first')
     # create surrogate keys
     costs_df['costs_key'] = range(0, len(costs_df)) # generate surrogate keys
-
     # print(costs_df.toString())
-    # costs_df.to_sql("costs", engine, index=False, if_exists='append')
 
     # ADDITIONAL DIMENSTIONS:
     # WEATHER
     weather_df = pd.DataFrame([[0, ""]], columns=['weather_key', 'description'])
-    # weather_df.to_sql("weather_info", engine, index=False, if_exists='append')
     # POPULATION STATS
     population_stats_df = pd.DataFrame([[0, ""]], columns=['pop_stats_key', 'description'])
-    # population_stats_df.to_sql("population_statistics", engine, index=False, if_exists='append')
-
-    # facts
-    fact_columns = ['start_date_key', 'end_date_key', 'location_key', 'disaster_key', 'summary_key', 'cost_key', 'pop_stats_key', 'weather_key', 'fatalities', 'injured', 'evacuated']
-    fact_df = pd.DataFrame(index = df.index.values, columns=fact_columns)
-    # print(fact_df)
-    fact_df['start_date_key'] = df['EVENT START DATE'].apply(get_start_date_id)
-    # print(fact_df)
 
 
-def get_start_date_id(start_date):
-    # TODO:
-    return 1
+    # # INSERT DIMENSIONS INTO DB
+    location_df.to_sql("location", engine, index=False, if_exists='append')
+    date_df.to_sql("date", engine, index=False, if_exists='append')
+    disaster_df.to_sql("disaster", engine, index=False, if_exists='append')
+    summary_df.to_sql("summary", engine, index=False, if_exists='append')
+    costs_df.to_sql("costs", engine, index=False, if_exists='append')
+    weather_df.to_sql("weather_info", engine, index=False, if_exists='append')
+    population_stats_df.to_sql("population_statistics", engine, index=False, if_exists='append')
+
+
+    # FACT TABLE
+    df = df.apply(get_facts, axis=1)
+    # rename columns
+    fact_columns = ['start_date_key', 'end_date_key', 'location_key', 'disaster_key', 'summary_key', 'cost_key', 'pop_stats_key', 'weather_key', 'fatalities', 'injured', 'evacuated', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k']
+    df.columns = fact_columns
+    # drop unneeded columns
+    df.drop(columns=['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k'], inplace=True)
+    # print(fact_df.toString())
+
+    # insert facts into db
+    df.to_sql("fact_table", engine, index=False, if_exists='append')
+
+
+def get_facts(line):
+
+    # get params for start_date
+    start_date = line['EVENT START DATE']
+    start_date_array = []
+    # filter for objects taht are not datetime
+    if not isinstance(start_date, datetime.datetime):
+        start_date_array = [None, None, None, None]
+    # filer for null objects
+    elif start_date != start_date:
+        start_date_array = [None, None, None, None]
+    else:
+        start_date_array = [start_date.isoweekday(), start_date.strftime('%W'), start_date.month, start_date.year]
+
+    # get params for end_date
+    end_date = line['EVENT END DATE']
+    end_date_array = []
+    # filter for objects taht are not datetime
+    if not isinstance(end_date, datetime.datetime):
+        end_date_array = [None, None, None, None]
+    # filer for null objects
+    elif end_date != end_date:
+        end_date_array = [None, None, None, None]
+    else:
+        end_date_array = [end_date.isoweekday(), end_date.strftime('%W'), end_date.month, end_date.year]
+        print("I AM HERE")
+
+    # get location params
+    location_array = get_location(list([line['PLACE'], line['PLACE']]))
+
+    # get disaster params
+    disaster_array = [line['EVENT TYPE'], line['EVENT SUBGROUP'], line['EVENT GROUP'], line['EVENT CATEGORY']]
+
+    # get summary params
+    summary_array = line['COMMENTS']
+
+    # get costs params
+    costs_array = [line['ESTIMATED TOTAL COST'], line['NORMALIZED TOTAL COST'], line['FEDERAL DFAA PAYMENTS'], line['INSURANCE PAYMENTS']]
+
+    # retrieve keys
+    start_date_key = get_date_id(start_date_array)
+    end_date_key = get_date_id(end_date_array)
+    location_key = get_location_id(location_array)
+    disaster_key = get_disaster_id(disaster_array)
+    summary_key = get_summary_id(summary_array)
+    costs_key = get_cost_id(costs_array)
+    # weather and pop_stats_key are fixed (no data yet)
+    weather_key = 0
+    population_stats_key = 0
+
+    # measures -> grabbed directly from the line
+    fatalities = line['FATALITIES']
+    injured = line['INJURED / INFECTED']
+    evacuated = line['EVACUATED']
+
+    # return line
+    return [start_date_key, end_date_key, location_key, disaster_key, summary_key, costs_key, weather_key, population_stats_key, fatalities, injured, evacuated, None,  None,  None,  None,  None,  None,  None,  None,  None,  None,  None]
+
+
+def get_date_id(date):
+    # date = [day, week, month, year]
+    command = ("""SELECT date_key FROM date WHERE day={} AND week={} AND month={} AND year={}""".format(date[0], date[1], date[2], date[3]),)
+    val = execute_db_command(command, True)
+    if val is None:
+        return None
+    else:
+        return val[0]
+
+def get_location_id(place):
+    # place = [city, province, country, canada]
+    command = ("""SELECT * FROM location WHERE city='{}' AND province='{}' AND country='{}'""".format(place[0], place[1], place[2]),)
+    val = execute_db_command(command, True)
+    print(val)
+    if val is None:
+        return None
+    else:
+        return val[0]
+
+def get_disaster_id(disaster):
+    # disaster_array = [disaster_type, disaster_subgroup, disaster_group, disaster_category]
+    command = ("""SELECT disaster_key FROM disaster WHERE disaster_type='{}' AND disaster_subgroup='{}' AND disaster_group='{}' AND disaster_category='{}'""".format(disaster[0], disaster[1], disaster[2], disaster[3]),)
+    val = execute_db_command(command, True)
+    if val is None:
+        return None
+    else:
+        return val[0]
+
+def get_summary_id(summary):
+    # summary_array = line['COMMENTS']
+    command = ("""SELECT summary_key FROM summary WHERE summary='{}'""".format(summary),)
+    val = execute_db_command(command, True)
+    if val is None:
+        return None
+    else:
+        return val[0]
+
+def get_cost_id(cost):
+    # cost_array = [estimated_total_cost, normalized_total_cost, federal_payments, insurance_payments]
+    command = ("""SELECT costs_key FROM costs WHERE estimated_total_cost={} AND normalized_total_cost={} AND federal_payments={} AND insurance_payments={}""".format(cost[0], cost[1], cost[2], cost[3]),)
+    val = execute_db_command(command, True)
+    if val is None:
+        return None
+    else:
+        return val[0]
 
 def get_location(location):
 
@@ -218,7 +320,6 @@ def get_date(date):
     # filer for null objects
     if date_time != date_time:
         return [None, None, None, None, None, None, None]
-
 
     # check if it is a weekend
     weekend = False
@@ -341,7 +442,7 @@ def get_province(argument):
 def execute_db_command(commands, fetch_value):
 
     try:
-        conn = psycopg2.connect(dbname="ufo", user="qufeichen", password="")
+        conn = psycopg2.connect(dbname=DATABASE_NAME, user=DATABASE_USERNAME, password=DATABASE_PASSWORD)
     except:
         print("I am unable to connect to the database.")
 
