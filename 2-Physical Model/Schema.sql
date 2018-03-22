@@ -3,7 +3,7 @@ CREATE DATABASE CanadianDisasterDataMart;
 
 -- Date Dimension
 CREATE TABLE date (
-  dateKey SERIAL PRIMARY KEY,
+  date_key SERIAL PRIMARY KEY,
   day int NOT NULL CHECK (day >= 1 AND day <= 7),
   week int NOT NULL CHECK (week >= 1 AND week <= 53),
   month int NOT NULL CHECK (month >= 1 AND month <= 12),
@@ -66,14 +66,14 @@ CREATE TABLE weather_info (
 
 -- Fact table
 CREATE TABLE fact_table (
-  start_date_key int NOT NULL REFERENCES date (dateKey),
-  end_date_key int NOT NULL REFERENCES date (dateKey),
-  location_key int NOT NULL REFERENCES location (locationKey),
-  disaster_key int NOT NULL REFERENCES disaster (disasterkey),
-  summary_key int NOT NULL REFERENCES summary (summaryKey),
-  cost_key int NOT NULL REFERENCES costs (costsKey),
-  pop_stats_key int NOT NULL REFERENCES populationStatistics (popStatsKey),
-  weather_key int NOT NULL REFERENCES weatherInfo (weatherKey),
+  start_date_key int NOT NULL REFERENCES date (date_key),
+  end_date_key int NOT NULL REFERENCES date (date_key),
+  location_key int NOT NULL REFERENCES location (location_key),
+  disaster_key int NOT NULL REFERENCES disaster (disaster_key),
+  summary_key int NOT NULL REFERENCES summary (summary_key),
+  cost_key int NOT NULL REFERENCES costs (costs_key),
+  pop_stats_key int NOT NULL REFERENCES population_statistics (pop_stats_key),
+  weather_key int NOT NULL REFERENCES weather_info (weather_key),
   fatalities int NOT NULL,
   injured int NOT NULL,
   evacuated int NOT NULL
