@@ -4,11 +4,11 @@ CREATE DATABASE CanadianDisasterDataMart;
 -- Date Dimension
 CREATE TABLE date (
   date_key SERIAL PRIMARY KEY,
-  day int NOT NULL CHECK (day >= 1 AND day <= 7),
-  week int NOT NULL CHECK (week >= 1 AND week <= 53),
-  month int NOT NULL CHECK (month >= 1 AND month <= 12),
-  year int NOT NULL,
-  weekend boolean NOT NULL,
+  day int,
+  week int,
+  month int,
+  year int,
+  weekend boolean,
   season_canada text,
   season_international text
 );
@@ -16,30 +16,30 @@ CREATE TABLE date (
 -- Location Dimension
 CREATE TABLE location (
   location_key int PRIMARY KEY,
-  city text NOT NULL,
-  province text NOT NULL,
-  country text NOT NULL,
-  canada boolean NOT NULL
+  city text,
+  province text,
+  country text,
+  canada boolean
 );
 
 -- Disaster Dimension
 CREATE TABLE disaster (
   disaster_key int PRIMARY KEY,
-  disaster_type text NOT NULL,
-  disaster_subgroup text NOT NULL,
-  disaster_group text NOT NULL,
-  disaster_category text NOT NULL,
-  magnitude decimal NOT NULL,
-  utility_people_affected int NOT NULL
+  disaster_type text,
+  disaster_subgroup text,
+  disaster_group text,
+  disaster_category text,
+  magnitude decimal,
+  utility_people_affected int
 );
 
 -- Summary Dimension
 CREATE TABLE summary (
   summary_key int PRIMARY KEY,
-  summary text NOT NULL,
-  keyword1 text NOT NULL,
-  keyword2 text NOT NULL,
-  keyword3 text NOT NULL
+  summary text,
+  keyword1 text,
+  keyword2 text,
+  keyword3 text
 );
 
 -- Costs Dimension
@@ -55,26 +55,26 @@ CREATE TABLE costs (
 -- populationStatistics Dimension
 CREATE TABLE population_statistics (
   pop_stats_key int PRIMARY KEY,
-  description text NOT NULL
+  description text
 );
 
 -- WeatherInfo Dimension
 CREATE TABLE weather_info (
   weather_key int PRIMARY KEY,
-  description text NOT NULL
+  description text
 );
 
 -- Fact table
 CREATE TABLE fact_table (
-  start_date_key int NOT NULL REFERENCES date (date_key),
-  end_date_key int NOT NULL REFERENCES date (date_key),
-  location_key int NOT NULL REFERENCES location (location_key),
-  disaster_key int NOT NULL REFERENCES disaster (disaster_key),
-  summary_key int NOT NULL REFERENCES summary (summary_key),
-  cost_key int NOT NULL REFERENCES costs (costs_key),
-  pop_stats_key int NOT NULL REFERENCES population_statistics (pop_stats_key),
-  weather_key int NOT NULL REFERENCES weather_info (weather_key),
-  fatalities int NOT NULL,
-  injured int NOT NULL,
-  evacuated int NOT NULL
+  start_date_key int REFERENCES date (date_key),
+  end_date_key int REFERENCES date (date_key),
+  location_key int REFERENCES location (location_key),
+  disaster_key int REFERENCES disaster (disaster_key),
+  summary_key int REFERENCES summary (summary_key),
+  cost_key int REFERENCES costs (costs_key),
+  pop_stats_key int REFERENCES population_statistics (pop_stats_key),
+  weather_key int REFERENCES weather_info (weather_key),
+  fatalities int,
+  injured int,
+  evacuated int
 );
