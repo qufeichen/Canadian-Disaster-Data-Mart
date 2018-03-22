@@ -6,12 +6,20 @@ import psycopg2
 import os
 import datetime
 import re
-
+import numpy as np
 # dependencies: install these before running!
 # pip install pandas
 # pip install xlrd
 # pip install psycopg2
 # pip install sqlalchemy
+
+# change these config params to your db credentials
+DATABASE_NAME = "CanadianDisasterDataMart"
+DATABASE_USERNAME = "qufeichen"
+DATABASE_PASSWORD = ""
+
+# disabling SettingWithCopyWarning
+# pd.options.mode.chained_assignment = None  # default='warn'
 
 def main():
 
@@ -87,8 +95,27 @@ def main():
     # create surrogate keys
     summary_df['id'] = range(0, len(summary_df)) # generate surrogate keys
 
-    print(summary_df)
+    # print(summary_df)
 
+    # costs
+    # note: column provincial_payments2 is a temp column
+    costs_columns = ['estimated_total_cost', 'normalized_total_cost', 'federal_payments', 'provincial_payments', 'provincial_payments2', 'insurance_payments']
+    costs_df = df[['ESTIMATED TOTAL COST', 'NORMALIZED TOTAL COST', 'FEDERAL DFAA PAYMENTS', 'PROVINCIAL DFAA PAYMENTS', 'PROVINCIAL DEPARTMENT PAYMENTS', 'INSURANCE PAYMENTS']]
+    costs_df.columns = costs_columns
+    # add together the two provincial payments (while taking null values into account)
+    costs_df = costs_df.apply(get_provincial_payments, axis=1)
+    # remove duplicates
+    costs_df = costs_df.drop_duplicates(keep='first').dropna(how="all") # filter out null values
+    # create surrogate keys
+    costs_df['id'] = range(0, len(costs_df)) # generate surrogate keys
+
+    print(costs_df)
+    print()
+    # print(costs_df.loc[126])
+    print(costs_df.loc[127])
+    print(costs_df.loc[128])
+    print(costs_df.loc[129])
+    print(costs_df.loc[130])
 
     fact_columns = ['start_date_key', 'end_date_key', 'location_key', 'disaster_key', 'summary_key', 'cost_key', 'pop_stats_key', 'weather_key', 'fatalities', 'injured', 'evacuated']
     fact_df = pd.DataFrame(index = df.index.values, columns=fact_columns)
@@ -178,6 +205,7 @@ def get_location(location):
     return [city, province, country, canada]
 
 def get_date(date):
+
     # get date_time object
     date_time = date[0]
 
@@ -209,8 +237,6 @@ def get_date(date):
     return [date_time.day, date_time.month, date_time.year, weekend, season_canada, season_international]
 
 def get_keywords(summary):
-    # TODO: remove stopwords
-    # randomly choose three words
 
     # words = summary.to_string().split()
     words = summary[0]
@@ -229,12 +255,44 @@ def get_keywords(summary):
 
     # sort by length of word
     keywords = sorted(my_dict, key=my_dict.get, reverse=True)[:3]
-    print(keywords)
 
+    # if not enough words in summary for keywords, do not add
     if len(keywords) < 3:
         return [summary, "", "", ""]
     else:
         return [summary, keywords[0], keywords[1], keywords[2]]
+
+def get_provincial_payments(costs):
+    # return sum of payment1 and payment2
+    # values can be null, so must check
+    estimated_total_cost = costs[0]
+    normalized_total_cost = costs[1]
+    federal_payments = costs[2]
+    provincial_payments1 = costs[3]
+    # payment 2 is a temp column, will not be used
+    provincial_payments2 = costs[4]
+    insurance_payments = costs[5]
+
+    # set provincial_payments1 = provincial_payments1 + provincial_payments2, but check for null values
+    if np.isnan(provincial_payments1):
+        if np.isnan(provincial_payments2):
+            provincial_payments1 = np.nan
+
+        else:
+            # return provincial_payments2
+            provincial_payments1 = provincial_payments2
+    else:
+        if np.isnan(provincial_payments2):
+            # return provincial_payments1
+            provincial_payments1 = provincial_payments1
+
+        else:
+            # return provincial_payments1 + provincial_payments2
+            provincial_payments1 = provincial_payments1 + provincial_payments2
+
+    payment2 = np.nan
+    return [estimated_total_cost, normalized_total_cost, federal_payments, provincial_payments1, provincial_payments2, insurance_payments]
+
 
 # dictionary of province name mappings
 def get_province(argument):
