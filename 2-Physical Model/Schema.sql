@@ -42,7 +42,7 @@ CREATE TABLE summary (
   keyword3 text NOT NULL
 );
 
--- costs Dimension
+-- Costs Dimension
 CREATE TABLE costs (
   costsKey int PRIMARY KEY,
   estimatedTotalCost decimal,
@@ -52,7 +52,7 @@ CREATE TABLE costs (
   insurancePayments decimal
 );
 
--- WeatherInfo Dimension
+-- populationStatistics Dimension
 CREATE TABLE populationStatistics (
   popStatsKey int PRIMARY KEY,
   description text NOT NULL
@@ -73,5 +73,8 @@ CREATE TABLE factTable (
   summaryKey int NOT NULL REFERENCES summary (summaryKey),
   costKey int NOT NULL REFERENCES costs (costsKey),
   popStatsKey int NOT NULL REFERENCES populationStatistics (popStatsKey),
-  weatherKey int NOT NULL REFERENCES weatherInfo (weatherKey)
+  weatherKey int NOT NULL REFERENCES weatherInfo (weatherKey),
+  fatalities int NOT NULL,
+  injured int NOT NULL,
+  Evacuated int NOT NULL
 );
