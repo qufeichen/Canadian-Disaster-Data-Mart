@@ -347,7 +347,8 @@ def get_facts(line):
     elif start_date != start_date:
         start_date_array = [None, None, None, None]
     else:
-        start_date_array = [start_date.isoweekday(), start_date.strftime('%W'), start_date.month, start_date.year]
+        # start_date_array = [start_date.isoweekday(), start_date.strftime('%W'), start_date.month, start_date.year]
+        start_date_array = [start_date.dayofweek+1, start_date.week, start_date.month, start_date.year]
 
     # get params for end_date
     end_date = line['EVENT END DATE']
@@ -359,7 +360,10 @@ def get_facts(line):
     elif end_date != end_date:
         end_date_array = [None, None, None, None]
     else:
-        end_date_array = [end_date.isoweekday(), end_date.strftime('%W'), end_date.month, end_date.year]
+        end_date_array = [end_date.dayofweek+1, end_date.week, end_date.month, end_date.year]
+    # return [date_time.dayofweek+1, date_time.week, date_time.month, date_time.year, weekend, season_canada, season_international]
+
+
 
     # get location params
     location_array = get_location(list([line['PLACE'], line['PLACE']]))
