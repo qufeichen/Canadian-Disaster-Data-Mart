@@ -79,6 +79,8 @@ def main():
     summary_df = summary_df.apply(get_keywords, axis=1)
     # change summary column data type from series to string
     summary_df.summary.apply('str')
+    # remove apostrophes
+    summary_df['summary'] = summary_df.summary.str.replace("'", "")
     # create surrogate keys
     summary_df['summary_key'] = range(0, len(summary_df)) # generate surrogate keys
     # print(summary_df.to_string())
@@ -93,9 +95,10 @@ def main():
     # remove temp column provincial_payments2 and duplicates
     costs_df = costs_df.drop(['provincial_payments2'], axis=1)
     costs_df = costs_df.drop_duplicates(keep='first')
+    # costs_df = costs_df.fillna("None")
     # create surrogate keys
     costs_df['costs_key'] = range(0, len(costs_df)) # generate surrogate keys
-    # print(costs_df.toString())
+    print(costs_df.to_string())
 
     # ADDITIONAL DIMENSTIONS:
     # WEATHER
@@ -103,7 +106,7 @@ def main():
     # POPULATION STATS
     population_stats_df = pd.DataFrame([[0, ""]], columns=['pop_stats_key', 'description'])
 
-    # # INSERT DIMENSIONS INTO DB
+    # INSERT DIMENSIONS INTO DB
     location_df.to_sql("location", engine, index=False, if_exists='append')
     date_df.to_sql("date", engine, index=False, if_exists='append')
     disaster_df.to_sql("disaster", engine, index=False, if_exists='append')
@@ -363,8 +366,6 @@ def get_facts(line):
         end_date_array = [end_date.dayofweek+1, end_date.week, end_date.month, end_date.year]
     # return [date_time.dayofweek+1, date_time.week, date_time.month, date_time.year, weekend, season_canada, season_international]
 
-
-
     # get location params
     location_array = get_location(list([line['PLACE'], line['PLACE']]))
 
@@ -435,8 +436,19 @@ def get_summary_id(summary):
         return val[0]
 
 def get_cost_id(cost):
-    # costs = [estimated_total_cost, normalized_total_cost, federal_payments, insurance_payments]
-    command = ("""SELECT costs_key FROM costs WHERE estimated_total_cost={} AND normalized_total_cost={} AND federal_payments={} AND insurance_payments={}""".format(cost[0], cost[1], cost[2], cost[3]),)
+    # costs = estimated_total_cost, normalized_total_cost, federal_payments, insurance_payments]
+
+    cost_array = []
+
+    for c in cost:
+        if c != c:
+            cost_array.append("is Null")
+        else:
+            cost_array.append("= " + str(c))
+
+    print(cost_array)
+
+    command = ("""SELECT costs_key FROM costs WHERE estimated_total_cost {} AND normalized_total_cost {} AND federal_payments {} AND insurance_payments {}""".format(cost_array[0], cost_array[1], cost_array[2], cost_array[3]),)
     val = execute_db_command(command, True)
     if val is None:
         return None
