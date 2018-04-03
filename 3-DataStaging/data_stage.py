@@ -98,7 +98,7 @@ def main():
     # costs_df = costs_df.fillna("None")
     # create surrogate keys
     costs_df['costs_key'] = range(0, len(costs_df)) # generate surrogate keys
-    print(costs_df.to_string())
+
 
     # ADDITIONAL DIMENSTIONS:
     # WEATHER
@@ -445,8 +445,6 @@ def get_cost_id(cost):
             cost_array.append("is Null")
         else:
             cost_array.append("= " + str(c))
-
-    print(cost_array)
 
     command = ("""SELECT costs_key FROM costs WHERE estimated_total_cost {} AND normalized_total_cost {} AND federal_payments {} AND insurance_payments {}""".format(cost_array[0], cost_array[1], cost_array[2], cost_array[3]),)
     val = execute_db_command(command, True)
