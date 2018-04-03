@@ -1,0 +1,42 @@
+This file outlines the steps of the transformations done to the data before it was inserted into our data mart
+
+- manually removed blank lines and faulty entries (entries starting with "Note:")
+
+Date:
+- started with the columns "EVENT START DATE" and "EVENT END DATE"
+- used the python date library to extract day, month, year, day of the week (if it's a weekend)
+- used the month to determine the season
+
+Location:
+- started with the column "PLACE"
+- parsed through to see if it contained a province name/abbreviation (i.e. "ON" or "Ontario")
+- if found, then remove that from the original string
+- check if there are multiple locations (will be separated by a comma or an "and")
+  - if so, then split on the comma/"and" and take the first location
+- remove stop words such as ["in", "and"]
+- get rid of excess spaces
+- check for exception that include the province name in the City (such as Quebec City or North Saskatchewan River)
+
+Costs
+- took columns estimated_total_cost, normalized_total_cost, federal_payments, and costs.insurance_payments as is from given data
+- summed up the different provincial_payments (PROVINCIAL DFAA PAYMENTS, and PROVINCIAL DEPARTMENT PAYMENTS)
+
+Disaster
+- took columns disaster_type, disaster_subgroup, disaster_group, disaster_category, magnitude, utility_people_affected as is from given data
+
+Summary
+- took the column COMMENTS as is
+- for keywords, just took first three words of the summary
+  - could have taken the three longest words in the summary
+  - could have used IDF to find the most informative words
+  - could have compiled a list of keywords to choose from
+
+Population Statistics
+- created a dimension but did not populate
+
+Weather Info
+- created a dimension but did not populate
+
+Fact table:
+- got keys from all dimension tables
+- took columns fatalities, injured, evacuated as is from given data
