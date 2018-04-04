@@ -1,0 +1,548 @@
+city,province,country,canada,location_key
+Ottawa,ON,Canada,t,0
+Gr Forks,BC,Canada,t,1
+Wellgton,BC,Canada,t,2
+Cranberry,BC,Canada,t,3
+Sat John River Bas,NB,Canada,t,4
+Fernie,BC,Canada,t,5
+Frank,AB,Canada,t,6
+Carbonado,BC,Canada,t,7
+Edmonton,AB,Canada,t,8
+Calgary,AB,Canada,t,9
+Upper Arrow Lake,BC,Canada,t,10
+Toronto,ON,Canada,t,11
+Red River,MB,Canada,t,12
+"","",Canada,t,13
+Spences Bridge,BC,Canada,t,14
+Quebec City,QC,Canada,t,15
+Notre-Dame-de-la-Salette,QC,Canada,t,16
+Chester,NB,Canada,t,17
+Burnaby,BC,Canada,t,18
+Spanish River,ON,Canada,t,19
+Rogers Pass,BC,Canada,t,20
+St-Alphonse-de-Bagotville,QC,Canada,t,21
+Coucoucache,QC,Canada,t,22
+Cochrane,ON,Canada,t,23
+Rega,SK,Canada,t,24
+Lakes Huron,ON,Canada,t,25
+St. Lawrence River,QC,Canada,t,26
+Hillcrest,AB,Canada,t,27
+North Saskatchewan River,SK,Canada,t,28
+Nanaimo,BC,Canada,t,29
+Cooper Me,BC,Canada,t,30
+Wnipeg,MB,Canada,t,31
+New Waterford,NS,Canada,t,32
+Halifax,NS,Canada,t,33
+Pictou County,NS,Canada,t,34
+Trenton,ON,Canada,t,35
+Southwestern,ON,Canada,t,36
+Southeastern,SK,Canada,t,37
+Icelic River,MB,Canada,t,38
+Sat John River,NB,Canada,t,39
+Montreal,QC,Canada,t,40
+Canng,NS,Canada,t,41
+Waswanipi reserve,QC,Canada,t,42
+Southern,AB,Canada,t,43
+Gr Falls,NL,Canada,t,44
+Upper Gagetown,NB,Canada,t,45
+Lake St. Clair,ON,Canada,t,46
+"",SK,Canada,t,47
+Emerson,MB,Canada,t,48
+Goulais River,ON,Canada,t,49
+Whitedog Lake,ON,Canada,t,50
+Come by Chance,NL,Canada,t,51
+Duck Mounta,MB,Canada,t,52
+Sat-Romuald,QC,Canada,t,53
+Lton,QC,Canada,t,54
+Sarnia,ON,Canada,t,55
+Lethbridge,AB,Canada,t,56
+Louiseville,QC,Canada,t,57
+Central,AB,Canada,t,58
+Norman Wells,Northwest Territories,Canada,t,59
+"",ON,Canada,t,60
+Courtl,ON,Canada,t,61
+Lesser Slave Lake region,AB,Canada,t,62
+Saguenay region,QC,Canada,t,63
+Sat-Basile-le-Gr,QC,Canada,t,64
+Dundas,ON,Canada,t,65
+Albany,ON,Canada,t,66
+Niagara Falls,ON,Canada,t,67
+to Ontario,YT,Canada,t,68
+Dryden,ON,Canada,t,69
+Montmartre,SK,Canada,t,70
+Liard River,Northwest Territories,Canada,t,71
+Northern,MB,Canada,t,72
+Radisson,QC,Canada,t,73
+Sat-Jacques,QC,Canada,t,74
+Sudbury,ON,Canada,t,75
+Gulf of St. Lawrence,QC,Canada,t,76
+Sat-Léonard d'Aston,QC,Canada,t,77
+Ungava Pensula,QC,Canada,t,78
+Old Crow,YT,Canada,t,79
+Harrow,ON,Canada,t,80
+British Columbia to,ON,Canada,t,81
+Banff,AB,Canada,t,82
+Hagersville,ON,Canada,t,83
+Vancouver Harbour,BC,Canada,t,84
+La Baie,QC,Canada,t,85
+Sate-Anne des Plaes,QC,Canada,t,86
+St.-Amable,QC,Canada,t,87
+Western,AB,Canada,t,88
+Woodstock,NB,Canada,t,89
+Southern,ON,Canada,t,90
+Oka,QC,Canada,t,91
+Madelee Isls,QC,Canada,t,92
+Bugaboo Glacier Provcial Park,BC,Canada,t,93
+Notre-Dame de Pierreville,QC,Canada,t,94
+Chaudière River,QC,Canada,t,95
+Niverville,MB,Canada,t,96
+Betsiamites,QC,Canada,t,97
+Red Deer,AB,Canada,t,98
+St. Lazare,MB,Canada,t,99
+Off Cape Beale,BC,Canada,t,100
+Ksella,AB,Canada,t,101
+Maskongé,QC,Canada,t,102
+Jarvis,ON,Canada,t,103
+Near the North Pole,NU,Canada,t,104
+Canso,NS,Canada,t,105
+Vernon,BC,Canada,t,106
+Gr Coulee,SK,Canada,t,107
+Central,ON,Canada,t,108
+Haes,AB,Canada,t,109
+Corunna,ON,Canada,t,110
+Montréal,QC,Canada,t,111
+Elmira,ON,Canada,t,112
+Port au Choix,NL,Canada,t,113
+Peace River,AB,Canada,t,114
+Sate-Brigitte-de-Laval,QC,Canada,t,115
+Port-aux-Basques,NL,Canada,t,116
+Hay River,Northwest Territories,Canada,t,117
+Plymouth,NS,Canada,t,118
+Attawapiskat,ON,Canada,t,119
+Longlac,ON,Canada,t,120
+Prairies Provces,ON,Canada,t,121
+Oakville,MB,Canada,t,122
+Rivers YT,YT,Canada,t,123
+Yellowknife,Northwest Territories,Canada,t,124
+Avalon,NL,Canada,t,125
+St. John's,NL,Canada,t,126
+Upper Sat John River Valley,NB,Canada,t,127
+Shubenacadie,NS,Canada,t,128
+"",QC,Canada,t,129
+Swan River,MB,Canada,t,130
+Truro,NS,Canada,t,131
+Wdsor,ON,Canada,t,132
+Kirkl Lake,ON,Canada,t,133
+to Maritimes,AB,Canada,t,134
+Plaster Rock,NB,Canada,t,135
+Southern,MB,Canada,t,136
+Sydney,NS,Canada,t,137
+Southwestern,MB,Canada,t,138
+Aylmer,QC,Canada,t,139
+Salmon Arm,BC,Canada,t,140
+Poplar Bay,AB,Canada,t,141
+Hervey Junction,QC,Canada,t,142
+Blanc Sablon,QC,Canada,t,143
+North Central,SK,Canada,t,144
+Western,MB,Canada,t,145
+Bur Pensula,NL,Canada,t,146
+Hamilton,ON,Canada,t,147
+Sunny Valley,AB,Canada,t,148
+Gre Prairie,AB,Canada,t,149
+South Dumfries,ON,Canada,t,150
+Flat Bay,NL,Canada,t,151
+Grey County,ON,Canada,t,152
+Timms,ON,Canada,t,153
+Atikokan,ON,Canada,t,154
+Lesser Slave Lake area,AB,Canada,t,155
+Nechako River,BC,Canada,t,156
+Southwest,AB,Canada,t,157
+Bay of Fundy,NB,Canada,t,158
+Durham,ON,Canada,t,159
+South-Central,SK,Canada,t,160
+Assiboe,MB,Canada,t,161
+Northwest of Matagami,QC,Canada,t,162
+Northwest,ON,Canada,t,163
+Iroquois Falls,ON,Canada,t,164
+Hummgbird Creek,BC,Canada,t,165
+Les Éboulements,QC,Canada,t,166
+Wood Buffalo National Park,AB,Canada,t,167
+Ontario,QC,Canada,t,168
+Kangiqsualujjuaq,QC,Canada,t,169
+Eastern,ON,Canada,t,170
+Swan Hills,AB,Canada,t,171
+Northern,ON,Canada,t,172
+Portage la Prairie,MB,Canada,t,173
+Tibbet Lake,Northwest Territories,Canada,t,174
+Greater Vancouver Area,BC,Canada,t,175
+Peggy's Cove,NS,Canada,t,176
+Barrie,ON,Canada,t,177
+Southern,BC,Canada,t,178
+Taylor,BC,Canada,t,179
+Terrace,BC,Canada,t,180
+East of Lake Wnipeg,MB,Canada,t,181
+Melita,MB,Canada,t,182
+Thamesville,ON,Canada,t,183
+La Ronge,SK,Canada,t,184
+Beardmore,ON,Canada,t,185
+Burwash Lg,YT,Canada,t,186
+Kenora,ON,Canada,t,187
+Badger,NL,Canada,t,188
+Clearwater,AB,Canada,t,189
+Drummondville,QC,Canada,t,190
+Balmoral,NB,Canada,t,191
+Vancouver,BC,Canada,t,192
+Little First Nation Reserve MB,SK,Canada,t,193
+Glacier National Park,BC,Canada,t,194
+St-Hilaire,QC,Canada,t,195
+Passmore,BC,Canada,t,196
+Pe Lake,AB,Canada,t,197
+Chetwynd,BC,Canada,t,198
+Walkerton,ON,Canada,t,199
+Vanguard,SK,Canada,t,200
+Peace River area,BC,Canada,t,201
+Morley,ON,Canada,t,202
+Brookdale,MB,Canada,t,203
+Notre-Dame-du-Lac,QC,Canada,t,204
+Northern,AB,Canada,t,205
+Montreal Lake,SK,Canada,t,206
+Attawapiskat First Nation,ON,Canada,t,207
+Municipalities of Ignace,ON,Canada,t,208
+Southeast,MB,Canada,t,209
+Kgsville,ON,Canada,t,210
+Peerless Lake,AB,Canada,t,211
+Turnor Lake,SK,Canada,t,212
+Hawes/Patuanak,SK,Canada,t,213
+Crutwell,SK,Canada,t,214
+Nemiscau region,QC,Canada,t,215
+Near community of Sheshatshui,NL,Canada,t,216
+Kee-Way-W FN; Townships of Terrace Bay,ON,Canada,t,217
+Brantford,ON,Canada,t,218
+Tyendaga Township First Nation,ON,Canada,t,219
+Oxford,NS,Canada,t,220
+"",MB,Canada,t,221
+Eastern Passage,NS,Canada,t,222
+Southeastern British Columbia,AB,Canada,t,223
+The Bois-Francs,QC,Canada,t,224
+South Central,MB,Canada,t,225
+The Pas,MB,Canada,t,226
+Estevan,SK,Canada,t,227
+Edmundston,NB,Canada,t,228
+Kgs County,PE,Canada,t,229
+North Vancouver,BC,Canada,t,230
+Kashechewan,ON,Canada,t,231
+Fort Good Hope,Northwest Territories,Canada,t,232
+Bridgewater,NS,Canada,t,233
+Chisasibi,QC,Canada,t,234
+Chibougamau,QC,Canada,t,235
+Cumberl House Cree First Nation,SK,Canada,t,236
+Kelowna,BC,Canada,t,237
+Stephenville,NL,Canada,t,238
+Abbotsford,BC,Canada,t,239
+Glovertown,NL,Canada,t,240
+Delta,BC,Canada,t,241
+Red Earth,SK,Canada,t,242
+Slocan River,BC,Canada,t,243
+Mistissi,QC,Canada,t,244
+Aklavik,Northwest Territories,Canada,t,245
+Tumbler Ridge,BC,Canada,t,246
+Nordegg,AB,Canada,t,247
+Cariboo-Chilcot,BC,Canada,t,248
+Galiano Isl,BC,Canada,t,249
+Boisbri,QC,Canada,t,250
+Amherstburg,ON,Canada,t,251
+Sate-Anne-des-Plaes,QC,Canada,t,252
+Sat-Joseph et Vallée,QC,Canada,t,253
+Russell,ON,Canada,t,254
+South Coast,BC,Canada,t,255
+Maple Ridge,BC,Canada,t,256
+Selkirk,MB,Canada,t,257
+Red Earth First Nation,SK,Canada,t,258
+Gateau,QC,Canada,t,259
+Fishg Lake,SK,Canada,t,260
+Bellefleur,NB,Canada,t,261
+Sept-Îles,QC,Canada,t,262
+Happy Valley - Goose Bay,NL,Canada,t,263
+Dartmouth,NS,Canada,t,264
+Elie,MB,Canada,t,265
+South Indian Lake,MB,Canada,t,266
+Kootenay,BC,Canada,t,267
+Natuashish,NL,Canada,t,268
+Gaspé,QC,Canada,t,269
+Matane,QC,Canada,t,270
+Prce George,BC,Canada,t,271
+Sat John,NB,Canada,t,272
+Port Bruce,ON,Canada,t,273
+Belleville,ON,Canada,t,274
+Paddockwood,SK,Canada,t,275
+Trent Hills,ON,Canada,t,276
+Albany River,ON,Canada,t,277
+James Bay,ON,Canada,t,278
+Newbrook,AB,Canada,t,279
+Pukatawagan,MB,Canada,t,280
+Norway House,MB,Canada,t,281
+High River,AB,Canada,t,282
+Huntgdon,QC,Canada,t,283
+Montérégie,QC,Canada,t,284
+Lanaudière,QC,Canada,t,285
+Northern,SK,Canada,t,286
+Deschambault Lake,SK,Canada,t,287
+Daniels Harbour,NL,Canada,t,288
+La Tuque,QC,Canada,t,289
+Zama City,AB,Canada,t,290
+Kgston,ON,Canada,t,291
+Northeastern,SK,Canada,t,292
+White Rock,BC,Canada,t,293
+East Kooteney (Elk River-Watershed) Region,BC,Canada,t,294
+Baie Verte Pensula,NL,Canada,t,295
+Pensulas of Avalon,NL,Canada,t,296
+Municipalities of Pipestone,MB,Canada,t,297
+Pangnirtung,NU,Canada,t,298
+Queens County,PE,Canada,t,299
+Colchester,NS,Canada,t,300
+Ger,NL,Canada,t,301
+South-Central,MB,Canada,t,302
+Greater Vancouver,BC,Canada,t,303
+Khyex River,BC,Canada,t,304
+Rock Creek,YT,Canada,t,305
+Wemotaci reserve,QC,Canada,t,306
+Tuktoyaktuk,Northwest Territories,Canada,t,307
+Notre-Dame-des-Prairies,QC,Canada,t,308
+Val-des-Bois,QC,Canada,t,309
+Déléage,QC,Canada,t,310
+Cranberry Portage,MB,Canada,t,311
+Meat Cove,NS,Canada,t,312
+Yarmouth County,NS,Canada,t,313
+Baie-Verte,NB,Canada,t,314
+Lambton County,ON,Canada,t,315
+Midl,ON,Canada,t,316
+Across Canada,SK,Canada,t,317
+Leamgton,ON,Canada,t,318
+North Battleford,SK,Canada,t,319
+Southern,SK,Canada,t,320
+Southeast,YT,Canada,t,321
+Merville,BC,Canada,t,322
+Kickg Horse Pass,AB,Canada,t,323
+Wisk,ON,Canada,t,324
+North-central,AB,Canada,t,325
+Southcentral,QC,Canada,t,326
+County of Thorhild,AB,Canada,t,327
+Britannia Beach,BC,Canada,t,328
+Perth-Andover,NB,Canada,t,329
+Comox,BC,Canada,t,330
+Glengarry Hospital,BC,Canada,t,331
+Chapleau,ON,Canada,t,332
+Saguenay River Valley,QC,Canada,t,333
+Cross Lake,MB,Canada,t,334
+Haileybury,ON,Canada,t,335
+Roseau River First Nation,MB,Canada,t,336
+Echo Harbour,BC,Canada,t,337
+Dawson,YT,Canada,t,338
+Rideau,QC,Canada,t,339
+Pike Lake,SK,Canada,t,340
+Coalmont,BC,Canada,t,341
+Liverpool,NS,Canada,t,342
+Capreol,ON,Canada,t,343
+Crerar,ON,Canada,t,344
+New Brunswick,QC,Canada,t,345
+Baff Bay,NU,Canada,t,346
+to Atlantic Canada,MB,Canada,t,347
+Moose River,NS,Canada,t,348
+St-Gregoire-de-Montmercy,QC,Canada,t,349
+Ray River,ON,Canada,t,350
+Sydney Mes,NS,Canada,t,351
+Great Lakes: Lake,ON,Canada,t,352
+Gogama,ON,Canada,t,353
+Charlottetown,PE,Canada,t,354
+Almonte,ON,Canada,t,355
+Aldershot,ON,Canada,t,356
+Sat-Donat,QC,Canada,t,357
+Wdsor to Tecumseh,ON,Canada,t,358
+Okanagan Valley,BC,Canada,t,359
+Elg,NB,Canada,t,360
+Bristol,NB,Canada,t,361
+Dugald,MB,Canada,t,362
+Red Deer River,AB,Canada,t,363
+Mississagi,ON,Canada,t,364
+Fraser River,BC,Canada,t,365
+Off Queen Charlotte Isls,BC,Canada,t,366
+Sat-Joachim,QC,Canada,t,367
+Rimouski,QC,Canada,t,368
+Canoe River,BC,Canada,t,369
+Bow River,BC,Canada,t,370
+Sumas,BC,Canada,t,371
+Coniston,ON,Canada,t,372
+Stephenville Crossg,NL,Canada,t,373
+Eastend,SK,Canada,t,374
+Lake Superior,ON,Canada,t,375
+White Pot Beach,NS,Canada,t,376
+Moose Jaw,SK,Canada,t,377
+Lake Louise,AB,Canada,t,378
+Nicolet,QC,Canada,t,379
+Sprghill,NS,Canada,t,380
+Mounte Slesse,BC,Canada,t,381
+Peace River,BC,Canada,t,382
+St. Lawrence,NL,Canada,t,383
+Murdochville,QC,Canada,t,384
+Thetford Mes,QC,Canada,t,385
+Prce Rupert,BC,Canada,t,386
+Amaranth,MB,Canada,t,387
+Lanark,ON,Canada,t,388
+Revelstoke,BC,Canada,t,389
+The Battery,NL,Canada,t,390
+South Central,SK,Canada,t,391
+Chedabucto Bay,NS,Canada,t,392
+Kootenay Region,BC,Canada,t,393
+McBride,BC,Canada,t,394
+Toulnustouc River,QC,Canada,t,395
+Hay River Township,Northwest Territories,Canada,t,396
+Sate-Thérèse-de-Blaville,QC,Canada,t,397
+Sat-Joachim-de-Tourelle,QC,Canada,t,398
+Ramsey Arm,BC,Canada,t,399
+Port Alberni,BC,Canada,t,400
+Hope,BC,Canada,t,401
+Ocean Falls,BC,Canada,t,402
+Gruc Me,BC,Canada,t,403
+Lasalle,QC,Canada,t,404
+Northeast of Vancouver,BC,Canada,t,405
+Lake Huron,ON,Canada,t,406
+St. Lawrence counties of,QC,Canada,t,407
+Baie-Comeau,QC,Canada,t,408
+Crowsnest Pass,BC,Canada,t,409
+Huron,ON,Canada,t,410
+Camp Creek,BC,Canada,t,411
+Lambeth,ON,Canada,t,412
+Dunnville,ON,Canada,t,413
+Porteau,BC,Canada,t,414
+Qu'Appelle River Bas,SK,Canada,t,415
+Iroquois,NB,Canada,t,416
+Sat-Jean,QC,Canada,t,417
+Fraser Canyon,BC,Canada,t,418
+Sat-Jean-Vianney,QC,Canada,t,419
+Maniwaki,QC,Canada,t,420
+Kootenay region,BC,Canada,t,421
+Victoriaville,QC,Canada,t,422
+Southwestern,QC,Canada,t,423
+Richelieu River,QC,Canada,t,424
+Corner Brook,NL,Canada,t,425
+Smoky,AB,Canada,t,426
+Harbour Breton,NL,Canada,t,427
+Cedoux,SK,Canada,t,428
+Central,MB,Canada,t,429
+Cambridge/Waterloo Region,ON,Canada,t,430
+Rae Pot,Northwest Territories,Canada,t,431
+Vancouver Isl,BC,Canada,t,432
+Southwestern,AB,Canada,t,433
+Devastation Glacier,BC,Canada,t,434
+Sat Bonaventure,QC,Canada,t,435
+Îles-de-la-Madelee,QC,Canada,t,436
+Pcher Creek,AB,Canada,t,437
+Western,NS,Canada,t,438
+Niagara Pensula,ON,Canada,t,439
+Assiboe River,MB,Canada,t,440
+Fundy Isles,NB,Canada,t,441
+Cranbrook,BC,Canada,t,442
+Moncton,NB,Canada,t,443
+Petty Harbour,NL,Canada,t,444
+Fort McMurray,AB,Canada,t,445
+St-Eustache,QC,Canada,t,446
+Eastman,QC,Canada,t,447
+Milk River,AB,Canada,t,448
+Millwoods,AB,Canada,t,449
+Golden,BC,Canada,t,450
+Glace Bay,NS,Canada,t,451
+North York,ON,Canada,t,452
+Red River region,MB,Canada,t,453
+Chapais region of Chibougamau,QC,Canada,t,454
+Woodstock,ON,Canada,t,455
+Drumheller,AB,Canada,t,456
+Southern,QC,Canada,t,457
+Mississauga,ON,Canada,t,458
+Belmoral Me,QC,Canada,t,459
+Webb,SK,Canada,t,460
+Red Lake,ON,Canada,t,461
+Gaspésie Region,QC,Canada,t,462
+Squamish River,BC,Canada,t,463
+Sussex,NB,Canada,t,464
+Southeastern,ON,Canada,t,465
+Westfield,NB,Canada,t,466
+Squamish,BC,Canada,t,467
+Medonte,ON,Canada,t,468
+Labrador City,NL,Canada,t,469
+Lodgepole,AB,Canada,t,470
+Orillia,ON,Canada,t,471
+Sherbrooke,QC,Canada,t,472
+Dunsmuir,BC,Canada,t,473
+Montreal (Sate-Rose),QC,Canada,t,474
+Curlg,NL,Canada,t,475
+North shore of St. Lawrence River,QC,Canada,t,476
+Reeces Corners,ON,Canada,t,477
+upper Richelieu River,QC,Canada,t,478
+Cape Breton Isl,NS,Canada,t,479
+Gaspésie,QC,Canada,t,480
+Avalon Pensula,NL,Canada,t,481
+Fort Frances,ON,Canada,t,482
+Northeast,SK,Canada,t,483
+Lower Fraser River Valley,BC,Canada,t,484
+South,MB,Canada,t,485
+Chesley,ON,Canada,t,486
+London,ON,Canada,t,487
+"",AB,Canada,t,488
+Smiths Falls,ON,Canada,t,489
+Pemberton area,BC,Canada,t,490
+Chatham,ON,Canada,t,491
+Stoney Creek,ON,Canada,t,492
+Hton,AB,Canada,t,493
+Lake Erie,ON,Canada,t,494
+Hopeville to Barrie,ON,Canada,t,495
+Riviere Chaudière,QC,Canada,t,496
+Valrita-Harty,ON,Canada,t,497
+400 km off Cape Race,NL,Canada,t,498
+Blue River,BC,Canada,t,499
+Slave Lake,AB,Canada,t,500
+Hall Lake,SK,Canada,t,501
+Wollaston Lake,SK,Canada,t,502
+Bron,MB,Canada,t,503
+Weyburn,SK,Canada,t,504
+Yarmouth,NS,Canada,t,505
+Wolfe Lake,NB,Canada,t,506
+Mishkeegogamang Ojibway First Nation (New Osnaburgh),ON,Canada,t,507
+Eckville,AB,Canada,t,508
+Resolute Bay,NU,Canada,t,509
+Goderich,ON,Canada,t,510
+Kgcome Inlet,BC,Canada,t,511
+Duncan,BC,Canada,t,512
+Fort Albany,ON,Canada,t,513
+Mackenzie County,AB,Canada,t,514
+Provce of,QC,Canada,t,515
+Sheshatshiu,NL,Canada,t,516
+Vita,MB,Canada,t,517
+Sicamous,BC,Canada,t,518
+Peachl,BC,Canada,t,519
+Thunder Bay,ON,Canada,t,520
+Lac-Mégantic,QC,Canada,t,521
+Kasabonika Lake First Nation,ON,Canada,t,522
+Gasford,AB,Canada,t,523
+Northwest River,NL,Canada,t,524
+Isl Lake,MB,Canada,t,525
+Sy Lake First Nation,ON,Canada,t,526
+Burlgton,ON,Canada,t,527
+Quesnel Lake,BC,Canada,t,528
+L’Isle-Verte,QC,Canada,t,529
+Sat-Jean-sur-Richelieu,QC,Canada,t,530
+,,,,531
+Cumberl House,SK,Canada,t,532
+Fredericton,NB,Canada,t,533
+Long Lake,AB,Canada,t,534
+Chestermere,AB,Canada,t,535
+Christmas Isl,NS,Canada,t,536
+Pikangikum First Nation,ON,Canada,t,537
+Horton,ON,Canada,t,538
+Kashechewan First Nation,ON,Canada,t,539
+Easterville,MB,Canada,t,540
+Long Pla First Nation,MB,Canada,t,541
+West Kelowna,BC,Canada,t,542
+Burns Bog,BC,Canada,t,543
+Seaforth Channel,BC,Canada,t,544
+Alberta,MB,Canada,t,545
+Paul First Nation,AB,Canada,t,546

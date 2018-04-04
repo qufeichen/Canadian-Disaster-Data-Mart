@@ -1,0 +1,157 @@
+disaster_type,disaster_subgroup,disaster_group,disaster_category,magnitude,utility_people_affected,disaster_key
+Non-Residential,Fire,Technology,Incident,0,0,0
+Non-Residential,Explosion,Technology,Incident,0,0,1
+Manufacturing / Industry,Infrastructure failure,Technology,Incident,0,0,2
+Flood,Meteorological - Hydrological,Natural,Disaster,0,0,3
+Landslide,Geological,Natural,Disaster,0,0,4
+Storms and Severe Thunderstorms,Meteorological - Hydrological,Natural,Disaster,0,0,5
+Winter Storm,Meteorological - Hydrological,Natural,Disaster,0,0,6
+Marine,Transportation accident,Technology,Incident,0,0,7
+Transportation,Infrastructure failure,Technology,Incident,0,0,8
+Residential,Fire,Technology,Incident,0,0,9
+Drought,Meteorological - Hydrological,Natural,Disaster,0,0,10
+Rail,Transportation accident,Technology,Incident,0,0,11
+Avalanche,Meteorological - Hydrological,Natural,Disaster,0,0,12
+Wildfire,Meteorological - Hydrological,Natural,Disaster,0,0,13
+Tornado,Meteorological - Hydrological,Natural,Disaster,0,0,14
+Heat Event,Meteorological - Hydrological,Natural,Disaster,0,0,15
+Epidemic,Biological,Natural,Disaster,0,0,16
+Fire,Hazardous Chemicals,Technology,Incident,0,0,17
+Winter Storm,Meteorological - Hydrological,Natural,Disaster,0,18270270,18
+Derailment Release,Hazardous Chemicals,Technology,Incident,0,0,19
+Marine Release,Hazardous Chemicals,Technology,Incident,0,0,20
+Leak / Spill Release,Hazardous Chemicals,Technology,Incident,0,0,21
+Storm - Unspecified / Other,Meteorological - Hydrological,Natural,Disaster,0,0,22
+Heat Event,Meteorological - Hydrological,Natural,Disaster,0,128169014,23
+Earthquake,Geological,Natural,Disaster,6,0,24
+Cold Event,Meteorological - Hydrological,Natural,Disaster,0,0,25
+Air,Transportation accident,Technology,Incident,0,0,26
+Hurricane / Typhoon / Tropical Storm,Meteorological - Hydrological,Natural,Disaster,0,0,27
+Vehicle Release,Hazardous Chemicals,Technology,Incident,0,0,28
+Non-Residential,Arson,Conflict,Incident,0,0,29
+Tornado,Meteorological - Hydrological,Natural,Disaster,0,1560000,30
+Disturbance / Demonstrations,Civil Incident,Conflict,Incident,0,0,31
+Flood,Meteorological - Hydrological,Natural,Disaster,0,412941,32
+Flood,Meteorological - Hydrological,Natural,Disaster,0,4150761,33
+Bomb Attacks,Terrorist,Conflict,Incident,0,0,34
+Winter Storm,Meteorological - Hydrological,Natural,Disaster,0,3189873,35
+Tornado,Meteorological - Hydrological,Natural,Disaster,0,2895455,36
+Storms and Severe Thunderstorms,Meteorological - Hydrological,Natural,Disaster,0,240000,37
+Vehicle,Transportation accident,Technology,Incident,0,0,38
+Winter Storm,Meteorological - Hydrological,Natural,Disaster,0,4828750,39
+Communications,Infrastructure failure,Technology,Incident,0,0,40
+Infestation,Biological,Natural,Disaster,0,0,41
+Storm Surge,Meteorological - Hydrological,Natural,Disaster,0,0,42
+Air,Hijacking,Conflict,Incident,0,0,43
+Water,Infrastructure failure,Technology,Incident,0,0,44
+Energy,Infrastructure failure,Technology,Incident,0,0,45
+Hurricane / Typhoon / Tropical Storm,Meteorological - Hydrological,Natural,Disaster,0,300000,46
+Tsunami,Geological,Natural,Disaster,0,0,47
+Storms and Severe Thunderstorms,Meteorological - Hydrological,Natural,Disaster,0,150000,48
+Storms and Severe Thunderstorms,Meteorological - Hydrological,Natural,Disaster,0,570000,49
+Storms and Severe Thunderstorms,Meteorological - Hydrological,Natural,Disaster,0,46500,50
+Wildfire,Meteorological - Hydrological,Natural,Disaster,0,3000,51
+Storms and Severe Thunderstorms,Meteorological - Hydrological,Natural,Disaster,0,200000,52
+Winter Storm,Meteorological - Hydrological,Natural,Disaster,0,60000,53
+Winter Storm,Meteorological - Hydrological,Natural,Disaster,0,6000,54
+Storms and Severe Thunderstorms,Meteorological - Hydrological,Natural,Disaster,0,299793,55
+Tornado,Meteorological - Hydrological,Natural,Disaster,0,45000,56
+Tornado,Meteorological - Hydrological,Natural,Disaster,0,15000,57
+Residential,Explosion,Technology,Incident,0,0,58
+Storms and Severe Thunderstorms,Meteorological - Hydrological,Natural,Disaster,0,15000,59
+Storms and Severe Thunderstorms,Meteorological - Hydrological,Natural,Disaster,0,75000,60
+Pandemic,Biological,Natural,Disaster,0,0,61
+Volcano,Geological,Natural,Disaster,0,0,62
+Storms and Severe Thunderstorms,Meteorological - Hydrological,Natural,Disaster,0,300000,63
+Tornado,Meteorological - Hydrological,Natural,Disaster,0,207000,64
+Storms and Severe Thunderstorms,Meteorological - Hydrological,Natural,Disaster,0,10000,65
+Storm - Unspecified / Other,Meteorological - Hydrological,Natural,Disaster,0,70000,66
+Earthquake,Geological,Natural,Disaster,5,900,67
+Tornado,Meteorological - Hydrological,Natural,Disaster,0,12000,68
+Storms and Severe Thunderstorms,Meteorological - Hydrological,Natural,Disaster,0,12000,69
+Hurricane / Typhoon / Tropical Storm,Meteorological - Hydrological,Natural,Disaster,0,40000,70
+Storms and Severe Thunderstorms,Meteorological - Hydrological,Natural,Disaster,0,24000,71
+Hurricane / Typhoon / Tropical Storm,Meteorological - Hydrological,Natural,Disaster,0,190000,72
+Winter Storm,Meteorological - Hydrological,Natural,Disaster,0,50000,73
+Hurricane / Typhoon / Tropical Storm,Meteorological - Hydrological,Natural,Disaster,0,120000,74
+Flood,Meteorological - Hydrological,Natural,Disaster,0,240000,75
+Tornado,Meteorological - Hydrological,Natural,Disaster,0,13500,76
+Earthquake,Geological,Natural,Disaster,7,0,77
+Winter Storm,Meteorological - Hydrological,Natural,Disaster,0,249000,78
+Wildfire,Meteorological - Hydrological,Natural,Disaster,0,2000,79
+Tsunami,Geological,Natural,Disaster,7,0,80
+Rioting,Civil Incident,Conflict,Incident,0,0,81
+Residential,Arson,Conflict,Incident,0,0,82
+Earthquake,Geological,Natural,Disaster,8,0,83
+Vehicle,Fire,Technology,Incident,0,0,84
+Tsunami,Geological,Natural,Disaster,9,0,85
+Flood,Meteorological - Hydrological,Natural,Disaster,0,236364,86
+Flood,Meteorological - Hydrological,Natural,Disaster,0,584656,87
+Tsunami,Geological,Natural,Disaster,8,0,88
+Winter Storm,Meteorological - Hydrological,Natural,Disaster,0,1027473,89
+Kidnapping / Murder,Terrorist,Conflict,Incident,0,0,90
+Space Debris,Space Event,Technology,Incident,0,0,91
+Flood,Meteorological - Hydrological,Natural,Disaster,0,119127,92
+Flood,Meteorological - Hydrological,Natural,Disaster,0,115994,93
+Winter Storm,Meteorological - Hydrological,Natural,Disaster,0,7615063,94
+Shootings,Terrorist,Conflict,Incident,0,0,95
+Tornado,Meteorological - Hydrological,Natural,Disaster,0,3684211,96
+Wildfire,Meteorological - Hydrological,Natural,Disaster,0,,97
+Heat Event,Meteorological - Hydrological,Natural,Disaster,0,,98
+Flood,Meteorological - Hydrological,Natural,Disaster,0,,99
+Disturbance / Demonstrations,Civil Incident,Conflict,Incident,0,,100
+Wildfire,Meteorological - Hydrological,Natural,Disaster,,,101
+Rioting,Civil Incident,Conflict,Incident,,,102
+Flood,Meteorological - Hydrological,Natural,Disaster,,,103
+Hurricane / Typhoon / Tropical Storm,Meteorological - Hydrological,Natural,Disaster,,600000,104
+Winter Storm,Meteorological - Hydrological,Natural,Disaster,,189000,105
+Winter Storm,Meteorological - Hydrological,Natural,Disaster,,127283,106
+Hurricane / Typhoon / Tropical Storm,Meteorological - Hydrological,Natural,Disaster,,40000,107
+Wildfire,Meteorological - Hydrological,Natural,Disaster,,1896,108
+Flood,Meteorological - Hydrological,Natural,Disaster,0,700,109
+Air,Transportation accident,Technology,Incident,,,110
+Tornado,Meteorological - Hydrological,Natural,Disaster,,8000,111
+Hurricane / Typhoon / Tropical Storm,Meteorological - Hydrological,Natural,Disaster,,1169000,112
+Tornado,Meteorological - Hydrological,Natural,Disaster,2,,113
+Geomagnetic Storm,Meteorological - Hydrological,Natural,Disaster,,6925128,114
+Earthquake,Geological,Natural,Disaster,9,,115
+Flood,Meteorological - Hydrological,Natural,Disaster,,1500,116
+Epidemic,Biological,Natural,Disaster,,,117
+Flood,Meteorological - Hydrological,Natural,Disaster,,300000,118
+Rail,Transportation accident,Technology,Incident,,,119
+Storm - Unspecified / Other,Meteorological - Hydrological,Natural,Disaster,,,120
+Storms and Severe Thunderstorms,Meteorological - Hydrological,Natural,Disaster,,,121
+Manufacturing / Industry,Infrastructure failure,Technology,Incident,,300,122
+Shootings,Terrorist,Conflict,Incident,,,123
+Residential,Fire,Technology,Incident,,,124
+Kidnapping / Murder,Terrorist,Conflict,Incident,,,125
+Winter Storm,Meteorological - Hydrological,Natural,Disaster,,153000,126
+Winter Storm,Meteorological - Hydrological,Natural,Disaster,,,127
+,,,"Response and recovery activities began at the time of the event. The ice storm significantly impacted some of Canada’s largest and most densely populated urban municipalities. Municipalities, provincial ministries and non-governmental organizations such as the Red Cross all acted to respond to the ice storm. Ontario determined that the impacts of the storm were severe enough to warrant implementation of an Ice Storm Assistance Program to help municipalities and conservation authorities with emergency response and recovery costs. Two deaths were attributed to the storm due to carbon monoxide poisoning from improperly ventilated generators and heaters.  ",,,128
+Hurricane / Typhoon / Tropical Storm,Meteorological - Hydrological,Natural,Disaster,,939000,129
+Winter Storm,Meteorological - Hydrological,Natural,Disaster,,317000,130
+Tornado,Meteorological - Hydrological,Natural,Disaster,,150000,131
+Storms and Severe Thunderstorms,Meteorological - Hydrological,Natural,Disaster,,300000,132
+Earthquake,Geological,Natural,Disaster,7.8,860000,133
+Winter Storm,Meteorological - Hydrological,Natural,Disaster,,12000,134
+Storms and Severe Thunderstorms,Meteorological - Hydrological,Natural,Disaster,,25000,135
+Storms and Severe Thunderstorms,Meteorological - Hydrological,Natural,Disaster,,5000,136
+Wildfire,Meteorological - Hydrological,Natural,Disaster,,300,137
+Storm - Unspecified / Other,Meteorological - Hydrological,Natural,Disaster,,1500000,138
+Leak / Spill Release,Hazardous Chemicals,Technology,Incident,,,139
+Storms and Severe Thunderstorms,Meteorological - Hydrological,Natural,Disaster,,9000,140
+Storms and Severe Thunderstorms,Meteorological - Hydrological,Natural,Disaster,,105000,141
+Flood,Meteorological - Hydrological,Natural,Disaster,,20000,142
+Winter Storm,Meteorological - Hydrological,Natural,Disaster,,69000,143
+Storm - Unspecified / Other,Meteorological - Hydrological,Natural,Disaster,,10038,144
+Winter Storm,Meteorological - Hydrological,Natural,Disaster,,750000,145
+Winter Storm,Meteorological - Hydrological,Natural,Disaster,,300000,146
+Storms and Severe Thunderstorms,Meteorological - Hydrological,Natural,Disaster,,117000,147
+Landslide,Geological,Natural,Disaster,,,148
+Flood,Meteorological - Hydrological,Natural,Disaster,,390600,149
+Storms and Severe Thunderstorms,Meteorological - Hydrological,Natural,Disaster,,33000,150
+Tornado,Meteorological - Hydrological,Natural,Disaster,,54000,151
+Storm - Unspecified / Other,Meteorological - Hydrological,Natural,Disaster,,225000,152
+Storm - Unspecified / Other,Meteorological - Hydrological,Natural,Disaster,,300000,153
+Storm - Unspecified / Other,Meteorological - Hydrological,Natural,Disaster,,480000,154
+Flood,Meteorological - Hydrological,Natural,Disaster,,6000,155
