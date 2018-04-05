@@ -1,0 +1,19 @@
+
+For Global Outliers:
+- Performed anomaly detection by observing results of the cluster analysis
+We can see that in our data, cluster 0 is significantly smaller than the rest (containing only 10 instances).
+Normal data tend to belong to large and dense clusters.
+We can determine that cluster 0 consists of global outliers.
+A comparison of cluster 0 and the full data can be found in global_outlier.png
+The full results of the cluster analysis can be found in simplekmeans_nosummary.txt
+
+We do not have enough background knowledge to determine if there are collective outliers
+(we would need to know the behavior of the objects as groups)
+
+For Contextual Outliers:
+- contextual attributes: location, date
+- behavioral attributes: disaster, costs, injuries
+We found our contextual outliers through statistical methods by examining our tableau graphs
+We can see from contextual_outlier.png that when looking at the histogram of cities in Canada with the most injuries (contextual_outlier.png),
+Halifax is very obviously an outlier, with more than nine times the injuries as the second most frequent city.
+Therefore, the number of injuries in Halifax is a contextual outlier.
