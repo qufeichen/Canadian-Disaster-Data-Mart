@@ -1,0 +1,615 @@
+<?xml version='1.0' encoding='utf-8' ?>
+
+<!-- build 10500.18.0305.1200                               -->
+<workbook original-version='10.5' source-build='10.5.2 (10500.18.0305.1200)' source-platform='mac' version='10.5' xmlns:user='http://www.tableausoftware.com/xml/user'>
+  <preferences>
+    <preference name='ui.encoding.shelf.height' value='24' />
+    <preference name='ui.shelf.height' value='26' />
+  </preferences>
+  <datasources>
+    <datasource caption='fact_table+ (CanadianDisasterDataMart)' inline='true' name='federated.1iq3q2n02u5uc11arnxuh1lyd2of' version='10.5'>
+      <connection class='federated'>
+        <named-connections>
+          <named-connection caption='localhost' name='postgres.0tsvxx21qmrpbu18y2g2215ditru'>
+            <connection authentication='username-password' class='postgres' dbname='CanadianDisasterDataMart' odbc-native-protocol='' one-time-sql='' port='5430' server='localhost' username='postgres' />
+          </named-connection>
+        </named-connections>
+        <relation join='inner' type='join'>
+          <clause type='join'>
+            <expression op='='>
+              <expression op='[fact_table].[cost_key]' />
+              <expression op='[costs].[costs_key]' />
+            </expression>
+          </clause>
+          <relation join='inner' type='join'>
+            <clause type='join'>
+              <expression op='='>
+                <expression op='[fact_table].[disaster_key]' />
+                <expression op='[disaster].[disaster_key]' />
+              </expression>
+            </clause>
+            <relation connection='postgres.0tsvxx21qmrpbu18y2g2215ditru' name='fact_table' table='[public].[fact_table]' type='table' />
+            <relation connection='postgres.0tsvxx21qmrpbu18y2g2215ditru' name='disaster' table='[public].[disaster]' type='table' />
+          </relation>
+          <relation connection='postgres.0tsvxx21qmrpbu18y2g2215ditru' name='costs' table='[public].[costs]' type='table' />
+        </relation>
+        <cols>
+          <map key='[cost_key]' value='[fact_table].[cost_key]' />
+          <map key='[costs_key]' value='[costs].[costs_key]' />
+          <map key='[disaster_category]' value='[disaster].[disaster_category]' />
+          <map key='[disaster_group]' value='[disaster].[disaster_group]' />
+          <map key='[disaster_key (disaster)]' value='[disaster].[disaster_key]' />
+          <map key='[disaster_key]' value='[fact_table].[disaster_key]' />
+          <map key='[disaster_subgroup]' value='[disaster].[disaster_subgroup]' />
+          <map key='[disaster_type]' value='[disaster].[disaster_type]' />
+          <map key='[end_date_key]' value='[fact_table].[end_date_key]' />
+          <map key='[estimated_total_cost]' value='[costs].[estimated_total_cost]' />
+          <map key='[evacuated]' value='[fact_table].[evacuated]' />
+          <map key='[fatalities]' value='[fact_table].[fatalities]' />
+          <map key='[federal_payments]' value='[costs].[federal_payments]' />
+          <map key='[injured]' value='[fact_table].[injured]' />
+          <map key='[insurance_payments]' value='[costs].[insurance_payments]' />
+          <map key='[location_key]' value='[fact_table].[location_key]' />
+          <map key='[magnitude]' value='[disaster].[magnitude]' />
+          <map key='[normalized_total_cost]' value='[costs].[normalized_total_cost]' />
+          <map key='[pop_stats_key]' value='[fact_table].[pop_stats_key]' />
+          <map key='[provincial_payments]' value='[costs].[provincial_payments]' />
+          <map key='[start_date_key]' value='[fact_table].[start_date_key]' />
+          <map key='[summary_key]' value='[fact_table].[summary_key]' />
+          <map key='[utility_people_affected]' value='[disaster].[utility_people_affected]' />
+          <map key='[weather_key]' value='[fact_table].[weather_key]' />
+        </cols>
+        <metadata-records>
+          <metadata-record class='column'>
+            <remote-name>start_date_key</remote-name>
+            <remote-type>3</remote-type>
+            <local-name>[start_date_key]</local-name>
+            <parent-name>[fact_table]</parent-name>
+            <remote-alias>start_date_key</remote-alias>
+            <ordinal>1</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>10</precision>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_INTEGER&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_SLONG&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>end_date_key</remote-name>
+            <remote-type>3</remote-type>
+            <local-name>[end_date_key]</local-name>
+            <parent-name>[fact_table]</parent-name>
+            <remote-alias>end_date_key</remote-alias>
+            <ordinal>2</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>10</precision>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_INTEGER&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_SLONG&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>location_key</remote-name>
+            <remote-type>3</remote-type>
+            <local-name>[location_key]</local-name>
+            <parent-name>[fact_table]</parent-name>
+            <remote-alias>location_key</remote-alias>
+            <ordinal>3</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>10</precision>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_INTEGER&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_SLONG&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>disaster_key</remote-name>
+            <remote-type>3</remote-type>
+            <local-name>[disaster_key]</local-name>
+            <parent-name>[fact_table]</parent-name>
+            <remote-alias>disaster_key</remote-alias>
+            <ordinal>4</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>10</precision>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_INTEGER&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_SLONG&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>summary_key</remote-name>
+            <remote-type>3</remote-type>
+            <local-name>[summary_key]</local-name>
+            <parent-name>[fact_table]</parent-name>
+            <remote-alias>summary_key</remote-alias>
+            <ordinal>5</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>10</precision>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_INTEGER&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_SLONG&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>cost_key</remote-name>
+            <remote-type>3</remote-type>
+            <local-name>[cost_key]</local-name>
+            <parent-name>[fact_table]</parent-name>
+            <remote-alias>cost_key</remote-alias>
+            <ordinal>6</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>10</precision>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_INTEGER&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_SLONG&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>pop_stats_key</remote-name>
+            <remote-type>3</remote-type>
+            <local-name>[pop_stats_key]</local-name>
+            <parent-name>[fact_table]</parent-name>
+            <remote-alias>pop_stats_key</remote-alias>
+            <ordinal>7</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>10</precision>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_INTEGER&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_SLONG&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>weather_key</remote-name>
+            <remote-type>3</remote-type>
+            <local-name>[weather_key]</local-name>
+            <parent-name>[fact_table]</parent-name>
+            <remote-alias>weather_key</remote-alias>
+            <ordinal>8</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>10</precision>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_INTEGER&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_SLONG&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>fatalities</remote-name>
+            <remote-type>3</remote-type>
+            <local-name>[fatalities]</local-name>
+            <parent-name>[fact_table]</parent-name>
+            <remote-alias>fatalities</remote-alias>
+            <ordinal>9</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>10</precision>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_INTEGER&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_SLONG&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>injured</remote-name>
+            <remote-type>3</remote-type>
+            <local-name>[injured]</local-name>
+            <parent-name>[fact_table]</parent-name>
+            <remote-alias>injured</remote-alias>
+            <ordinal>10</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>10</precision>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_INTEGER&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_SLONG&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>evacuated</remote-name>
+            <remote-type>3</remote-type>
+            <local-name>[evacuated]</local-name>
+            <parent-name>[fact_table]</parent-name>
+            <remote-alias>evacuated</remote-alias>
+            <ordinal>11</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>10</precision>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_INTEGER&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_SLONG&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>disaster_key</remote-name>
+            <remote-type>3</remote-type>
+            <local-name>[disaster_key (disaster)]</local-name>
+            <parent-name>[disaster]</parent-name>
+            <remote-alias>disaster_key</remote-alias>
+            <ordinal>13</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>10</precision>
+            <contains-null>false</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_INTEGER&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_SLONG&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>disaster_type</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[disaster_type]</local-name>
+            <parent-name>[disaster]</parent-name>
+            <remote-alias>disaster_type</remote-alias>
+            <ordinal>14</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>8190</width>
+            <contains-null>true</contains-null>
+            <cast-to-local-type>true</cast-to-local-type>
+            <collation flag='0' name='LEN_RUS' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_WLONGVARCHAR&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_WCHAR&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>disaster_subgroup</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[disaster_subgroup]</local-name>
+            <parent-name>[disaster]</parent-name>
+            <remote-alias>disaster_subgroup</remote-alias>
+            <ordinal>15</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>8190</width>
+            <contains-null>true</contains-null>
+            <cast-to-local-type>true</cast-to-local-type>
+            <collation flag='0' name='LEN_RUS' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_WLONGVARCHAR&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_WCHAR&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>disaster_group</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[disaster_group]</local-name>
+            <parent-name>[disaster]</parent-name>
+            <remote-alias>disaster_group</remote-alias>
+            <ordinal>16</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>8190</width>
+            <contains-null>true</contains-null>
+            <cast-to-local-type>true</cast-to-local-type>
+            <collation flag='0' name='LEN_RUS' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_WLONGVARCHAR&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_WCHAR&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>disaster_category</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[disaster_category]</local-name>
+            <parent-name>[disaster]</parent-name>
+            <remote-alias>disaster_category</remote-alias>
+            <ordinal>17</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>8190</width>
+            <contains-null>true</contains-null>
+            <cast-to-local-type>true</cast-to-local-type>
+            <collation flag='0' name='LEN_RUS' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_WLONGVARCHAR&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_WCHAR&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>magnitude</remote-name>
+            <remote-type>131</remote-type>
+            <local-name>[magnitude]</local-name>
+            <parent-name>[disaster]</parent-name>
+            <remote-alias>magnitude</remote-alias>
+            <ordinal>18</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>28</precision>
+            <scale>6</scale>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_NUMERIC&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_NUMERIC&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>utility_people_affected</remote-name>
+            <remote-type>3</remote-type>
+            <local-name>[utility_people_affected]</local-name>
+            <parent-name>[disaster]</parent-name>
+            <remote-alias>utility_people_affected</remote-alias>
+            <ordinal>19</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>10</precision>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_INTEGER&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_SLONG&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>costs_key</remote-name>
+            <remote-type>3</remote-type>
+            <local-name>[costs_key]</local-name>
+            <parent-name>[costs]</parent-name>
+            <remote-alias>costs_key</remote-alias>
+            <ordinal>21</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>10</precision>
+            <contains-null>false</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_INTEGER&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_SLONG&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>estimated_total_cost</remote-name>
+            <remote-type>131</remote-type>
+            <local-name>[estimated_total_cost]</local-name>
+            <parent-name>[costs]</parent-name>
+            <remote-alias>estimated_total_cost</remote-alias>
+            <ordinal>22</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>28</precision>
+            <scale>6</scale>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_NUMERIC&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_NUMERIC&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>normalized_total_cost</remote-name>
+            <remote-type>131</remote-type>
+            <local-name>[normalized_total_cost]</local-name>
+            <parent-name>[costs]</parent-name>
+            <remote-alias>normalized_total_cost</remote-alias>
+            <ordinal>23</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>28</precision>
+            <scale>6</scale>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_NUMERIC&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_NUMERIC&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>federal_payments</remote-name>
+            <remote-type>131</remote-type>
+            <local-name>[federal_payments]</local-name>
+            <parent-name>[costs]</parent-name>
+            <remote-alias>federal_payments</remote-alias>
+            <ordinal>24</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>28</precision>
+            <scale>6</scale>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_NUMERIC&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_NUMERIC&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>provincial_payments</remote-name>
+            <remote-type>131</remote-type>
+            <local-name>[provincial_payments]</local-name>
+            <parent-name>[costs]</parent-name>
+            <remote-alias>provincial_payments</remote-alias>
+            <ordinal>25</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>28</precision>
+            <scale>6</scale>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_NUMERIC&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_NUMERIC&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>insurance_payments</remote-name>
+            <remote-type>131</remote-type>
+            <local-name>[insurance_payments]</local-name>
+            <parent-name>[costs]</parent-name>
+            <remote-alias>insurance_payments</remote-alias>
+            <ordinal>26</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>28</precision>
+            <scale>6</scale>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_NUMERIC&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_NUMERIC&quot;</attribute>
+            </attributes>
+          </metadata-record>
+        </metadata-records>
+      </connection>
+      <aliases enabled='yes' />
+      <column datatype='integer' name='[Number of Records]' role='measure' type='quantitative' user:auto-column='numrec'>
+        <calculation class='tableau' formula='1' />
+      </column>
+      <column aggregation='Sum' caption='Cost Key' datatype='integer' name='[cost_key]' role='dimension' type='ordinal' />
+      <column aggregation='Sum' caption='Costs Key' datatype='integer' name='[costs_key]' role='dimension' type='ordinal' />
+      <column caption='Disaster Category' datatype='string' name='[disaster_category]' role='dimension' type='nominal' />
+      <column caption='Disaster Group' datatype='string' name='[disaster_group]' role='dimension' type='nominal' />
+      <column aggregation='Sum' caption='Disaster Key (Disaster)' datatype='integer' name='[disaster_key (disaster)]' role='dimension' type='ordinal' />
+      <column aggregation='Sum' caption='Disaster Key' datatype='integer' name='[disaster_key]' role='dimension' type='ordinal' />
+      <column caption='Disaster Subgroup' datatype='string' name='[disaster_subgroup]' role='dimension' type='nominal' />
+      <column caption='Disaster Type' datatype='string' name='[disaster_type]' role='dimension' type='nominal' />
+      <column aggregation='Sum' caption='End Date Key' datatype='integer' name='[end_date_key]' role='dimension' type='ordinal' />
+      <column caption='Estimated Total Cost' datatype='real' name='[estimated_total_cost]' role='measure' type='quantitative' />
+      <column caption='Evacuated' datatype='integer' name='[evacuated]' role='measure' type='quantitative' />
+      <column caption='Fatalities' datatype='integer' name='[fatalities]' role='measure' type='quantitative' />
+      <column caption='Federal Payments' datatype='real' name='[federal_payments]' role='measure' type='quantitative' />
+      <column caption='Injured' datatype='integer' name='[injured]' role='measure' type='quantitative' />
+      <column caption='Insurance Payments' datatype='real' name='[insurance_payments]' role='measure' type='quantitative' />
+      <column aggregation='Sum' caption='Location Key' datatype='integer' name='[location_key]' role='dimension' type='ordinal' />
+      <column caption='Magnitude' datatype='real' name='[magnitude]' role='measure' type='quantitative' />
+      <column caption='Normalized Total Cost' datatype='real' name='[normalized_total_cost]' role='measure' type='quantitative' />
+      <column aggregation='Sum' caption='Pop Stats Key' datatype='integer' name='[pop_stats_key]' role='dimension' type='ordinal' />
+      <column caption='Provincial Payments' datatype='real' name='[provincial_payments]' role='measure' type='quantitative' />
+      <column aggregation='Sum' caption='Start Date Key' datatype='integer' name='[start_date_key]' role='dimension' type='ordinal' />
+      <column aggregation='Sum' caption='Summary Key' datatype='integer' name='[summary_key]' role='dimension' type='ordinal' />
+      <column caption='Utility People Affected' datatype='integer' name='[utility_people_affected]' role='measure' type='quantitative' />
+      <column aggregation='Sum' caption='Weather Key' datatype='integer' name='[weather_key]' role='dimension' type='ordinal' />
+      <layout dim-ordering='alphabetic' dim-percentage='0.376238' measure-ordering='alphabetic' measure-percentage='0.623762' show-structure='true' />
+      <semantic-values>
+        <semantic-value key='[Country].[Name]' value='&quot;Canada&quot;' />
+      </semantic-values>
+    </datasource>
+  </datasources>
+  <worksheets>
+    <worksheet name='Sheet 1'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='fact_table+ (CanadianDisasterDataMart)' name='federated.1iq3q2n02u5uc11arnxuh1lyd2of' />
+          </datasources>
+          <datasource-dependencies datasource='federated.1iq3q2n02u5uc11arnxuh1lyd2of'>
+            <column aggregation='Sum' caption='Cost Key' datatype='integer' name='[cost_key]' role='dimension' type='ordinal' />
+            <column-instance column='[cost_key]' derivation='Sum' name='[sum:cost_key:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+          </pane>
+        </panes>
+        <rows />
+        <cols>[federated.1iq3q2n02u5uc11arnxuh1lyd2of].[sum:cost_key:qk]</cols>
+      </table>
+    </worksheet>
+  </worksheets>
+  <windows source-height='30'>
+    <window class='worksheet' maximized='true' name='Sheet 1'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <highlight>
+          <color-one-way>
+            <field>[federated.1iq3q2n02u5uc11arnxuh1lyd2of].[none:costs_key:ok]</field>
+          </color-one-way>
+        </highlight>
+      </viewpoint>
+    </window>
+  </windows>
+  <thumbnails>
+    <thumbnail height='158' name='Sheet 1' width='384'>
+      iVBORw0KGgoAAAANSUhEUgAAAYAAAACeCAYAAAA7bN3gAAAACXBIWXMAAA7DAAAOwwHHb6hk
+      AAALcElEQVR4nO3cf2zU9R3H8Zfj2nrF9gRWKdFSMbtBZcPIwkU7IiNNBCXpIksasoR17txg
+      MrVGMIqNuqVGFAjVjWT9ozEEp6RTWEi6tInYsdxmck4a2Jo6y/hhdRw2dly73dlypvvj25Zi
+      79ord0ePvp+PpEl7973vfa553+f1/Xy+3+/nuqGhoSEBAMz52nQ3AAAwPQgAADCKAAAAowgA
+      ADCKAAAAowgAADCKAAAAowgAADCKAAAAowgAADCKAAAAowgAADCKAAAAowgAADCKAAAAo1IO
+      gEgkko52AGnX39+v/v7+6W4GEFc21CcjAAAwigAAAKMIAAAwigAAAKMIAAAwypWOnXx/+4F0
+      7AYAcBUxAgAAowgAADCKAAAAowgAADCKAAAAowgAADCKAAAAowgAADCKAAAAowgAADCKAAAA
+      owgAADCKAAAAowgAADCKAAAAowgAADCKAAAAowgAADCKAAAAowgAADCKAAAAowgAADCKAAAA
+      owgAADCKAAAAowgAADCKAAAAo64bGhoaSmUHkUhE+fn56WoPkDb9/f2SpIKCgmluCTBeNtQn
+      IwAAMIoAAACj0jIFBAC49jACAACjUh4BAACuTSmPAJgCQraKRCLUJ7JWNtQnU0AAYBQBAABG
+      EQAAYBQBAABGEQAAYBQBAABGEQAAYBQBAABGEQAAYBRLQQCAUYwAAMAoAgAAjCIAAMAoAgAA
+      jCIAAMAoAgAAjCIAAMAoAgAAjCIAAMAoAgAAjHJdlXeJDWjgS0mapby8q/OWAJC1sqRPzOw7
+      D5zT4ddeU3P72UuPebyqevAnqiibO3772Dm1vPmOcu5Yq4plRYl2qhMtzTreM6jF36uUryQ/
+      I01Hdop0B3X4T6eknERbXFTugrtUucp7qbipK2RI5NwJvf27t3V+/ho9vLFck1bNVPtESeeO
+      teiPH+Wo8oEKFeXF322s55jeaumQPItVWembvB3DMhcAfZ3ata1eXcN/uj0eKRxWNNylpvqn
+      1VX1lDZXLLr8NYMX9F4goNAHOVpRv0GFcXbb89fXtfdQUJLkuev+jDUf2enT95vVFghNslVA
+      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
+      oooqHA6P+Rk+2+R2y62oQiOPR6Ub5l1+MveK+kRJrnwncHLjPOco0sZnN42OMN480p30Z7pu
+      aGhoKOmtr8RArzo7Tuqie45i/f9RQckSeRew6hZSM9DXq88+D+uLWEwu1/XyzLtJcwvTsEIc
+      kGlZ1CdmPgAAAFkpc6uBAgCyGgEAAEYRAABgFAEAAEYRAABgFAEAAEYRAABgFAEAAEYRAABg
+      FAEAAEYRAABgFAEAAEYRAABgFAEAAEYRAABgFAEAAEYRAABgFAEAAEYRAABgFAEAAEYRAABg
+      FAEAAEYRAABgFAEAAEYRAABgFAEAAEYRAABgFAEAAEYRAABgFAEAAEYRAABgFAEAAEYRAABg
+      FAEAAEYRAABgFAEAAEYRAABgFAEAAEYRAABgFAEAAEYRAABgFAEAAEYRAABgFAEAAEYRAABg
+      FAEAAEYRAABgFAEAAEYRAABgFAEAAEYRAABgFAEAAEYRAABgFAEAAEYRAABgFAEAAEYRAABg
+      FAEAAEYRAABgFAEAAEb9H0ccy9y4Mtq/AAAAAElFTkSuQmCC
+    </thumbnail>
+  </thumbnails>
+</workbook>
