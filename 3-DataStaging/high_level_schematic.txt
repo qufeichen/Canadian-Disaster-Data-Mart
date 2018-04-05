@@ -7,6 +7,8 @@ Date:
 - started with the columns "EVENT START DATE" and "EVENT END DATE" and unbucketized the value
 - used the python date library to extract day, month, year, day of the week (if it's a weekend)
 - used the month to determine the season
+- kept only distinct rows
+- created surrogate keys for data
 
 Location:
 - started with the column "PLACE" and unbucketized the value
@@ -17,13 +19,18 @@ Location:
 - remove stop words such as ["in", "and"]
 - get rid of excess spaces
 - check for exceptions that include the province name in the City (such as Quebec City or North Saskatchewan River) and handle these cases uniquely
+- kept only distinct rows
+- created surrogate keys for data
 
 Costs
 - took columns estimated_total_cost, normalized_total_cost, federal_payments, and costs.insurance_payments as is from given data
 - summed up the different provincial_payments (PROVINCIAL DFAA PAYMENTS, and PROVINCIAL DEPARTMENT PAYMENTS)
+- kept only distinct rows
+- created surrogate keys for data
 
 Disaster
 - took columns disaster_type, disaster_subgroup, disaster_group, disaster_category, magnitude, utility_people_affected as is from given data
+- kept only distinct rows
 
 Summary
 - took the column COMMENTS as is
@@ -31,16 +38,20 @@ Summary
   - could have taken the three longest words in the summary
   - could have used IDF to find the most informative words
   - could have compiled a list of keywords to choose from
+- created surrogate keys for data
 
 Population Statistics
 - brainstormed about retrieving the population statistics info per location at the time of each disaster
 - created a dimension but did not populate
+- created surrogate keys for data
 
 Weather Info
 - brainstormed about retrieving the weather info on at the time of each disaster
 - created a dimension but did not populate
+- created surrogate keys for data
 
 Fact table:
 - got keys from all dimension tables
 - checked referential integrity
 - took columns fatalities, injured, evacuated as is from given data and added them as measures
+- created surrogate keys for data
