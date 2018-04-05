@@ -1,11 +1,13 @@
 --OLAP Queries
 
+--Roll Up
 -- Total number of injuries and fatalities in Canada in 1996 by province.
 SELECT l.Province, sum(f.injured), sum(f.fatalities)
 	FROM Location l, Fact_Table f, Date d1, Date d2
 	WHERE l.Canada = TRUE AND f.Location_Key = l.Location_Key
 	AND d1.Year = 1996 AND d2.Year = 1996 AND f.Start_Date_key = d1.Date_key AND f.End_Date_key = d2.Date_key
 	GROUP BY l.Province
+
 
 
 -- Years with the most deaths
@@ -17,7 +19,8 @@ SELECT d1.Year, sum(f.fatalities) as deaths
 	LIMIT 10
 
 
--- Comparison of fatalities by disaster type in British Columbia, in from the years 2000 to 2010
+-- Slice and Dice
+-- Comparison of fatalities by disaster type in British Columbia, from the years 2000 to 2010
 SELECT d.Disaster_type, sum(f.fatalities)
 	FROM Location l, Fact_Table f, Disaster d, Date d1, Date d2
 	WHERE l.Canada = TRUE AND l.Province = 'BC' AND f.Location_Key = l.Location_Key AND f.Disaster_key = d.Disaster_key
@@ -43,6 +46,7 @@ SELECT l.Province, sum(c.federal_payments) as FederalPayments, sum(c.provincial_
 	ORDER BY TotalNormalizedCosts DESC
 
 
+-- Top N
 -- Cities in Canada with the most fires
 SELECT l.City, count(f) as fires
 	FROM Location l, Fact_Table f, Disaster d
