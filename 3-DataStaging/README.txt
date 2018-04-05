@@ -1,3 +1,6 @@
+data_stage.py is the script that takes the given excel file, preprocesses the data, and inserts the data into the data mart.
+
+--------------------------------------------------------------
 Instructions for running data_stage.py
 --------------------------------------------------------------
 
@@ -16,3 +19,10 @@ Instructions for running data_stage.py
   - pip install numpy
 
 3. run 'python data_stage.py'
+
+
+--------------------------------------------------------------
+The data folder contains a backup of the completed database, and exports(csv) of all of the completed tables(along with the queries used to export the tables)
+
+The high level schematic can be found in high_level_schematic.png
+A description of the steps taken to stage the data can be found in high_level_schematic.txt
